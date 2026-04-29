@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CineHub - Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#131313",
+                        "on-secondary-fixed-variant": "#474746",
+                        "surface-container-highest": "#353534",
+                        "on-tertiary-container": "#f9f6f6",
+                        "primary-fixed": "#ffdad4",
+                        "error": "#ffb4ab",
+                        "outline-variant": "#5f3f3a",
+                        "inverse-on-surface": "#313030",
+                        "on-primary": "#690000",
+                        "tertiary": "#c8c6c5",
+                        "error-container": "#93000a",
+                        "surface-bright": "#3a3939",
+                        "on-background": "#e5e2e1",
+                        "on-tertiary-fixed": "#1b1c1c",
+                        "secondary-fixed": "#e5e2e1",
+                        "on-surface": "#e5e2e1",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "inverse-primary": "#c00000",
+                        "secondary": "#c8c6c5",
+                        "tertiary-fixed": "#e4e2e1",
+                        "on-secondary-container": "#b7b5b4",
+                        "on-primary-fixed": "#410000",
+                        "background": "#131313",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-secondary": "#313030",
+                        "surface-tint": "#ffb4a8",
+                        "surface-variant": "#353534",
+                        "on-surface-variant": "#e9bcb5",
+                        "on-tertiary": "#303030",
+                        "surface-dim": "#131313",
+                        "surface-container-lowest": "#0e0e0e",
+                        "outline": "#b08781",
+                        "on-primary-fixed-variant": "#930100",
+                        "on-error-container": "#ffdad6",
+                        "secondary-container": "#474746",
+                        "primary": "#ffb4a8",
+                        "inverse-surface": "#e5e2e1",
+                        "primary-container": "#e50000",
+                        "surface-container-low": "#1c1b1b",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container": "#201f1f",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "on-error": "#690005",
+                        "on-primary-container": "#fff6f4",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "tertiary-container": "#727171"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "120px",
+                        "container-max": "1440px",
+                        "margin-page": "80px",
+                        "gutter": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Manrope"],
+                        "headline-xl": ["Be Vietnam Pro"],
+                        "headline-lg": ["Be Vietnam Pro"],
+                        "body-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "headline-md": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-xl": ["48px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0F0F0F;
+            color: #e5e2e1;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-surface">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-lg border-b border-white/10 shadow-2xl shadow-black/50">
+<div class="max-w-[1440px] mx-auto flex justify-between items-center h-20 px-10 md:px-20 w-full">
+<div class="text-2xl font-black text-red-600 tracking-tight uppercase font-['Be_Vietnam_Pro']">
+                CineHub
+            </div>
+<div class="hidden md:flex items-center space-x-8 font-['Be_Vietnam_Pro'] font-medium text-sm tracking-wide">
+<a class="text-white border-b-2 border-red-600 pb-1" href="#">Home</a>
+<a class="text-gray-400 hover:text-white transition-colors" href="#">Movies &amp; Shows</a>
+<a class="text-gray-400 hover:text-white transition-colors" href="#">Support</a>
+<a class="text-gray-400 hover:text-white transition-colors" href="#">Subscriptions</a>
+</div>
+<div class="flex items-center space-x-6">
+<span class="material-symbols-outlined text-on-surface cursor-pointer hover:scale-105 transition-all duration-200" data-icon="search">search</span>
+<span class="material-symbols-outlined text-on-surface cursor-pointer hover:scale-105 transition-all duration-200" data-icon="notifications">notifications</span>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Cinematic background" class="w-full h-full object-cover opacity-30" data-alt="Cinematic abstract background with blue and red light streaks on dark background, high-end entertainment atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXKOl0UQ--0gCEPadS5pZdLyKXo7gZxcsv8TttT57278kncbKVCHlhofIpiZV4fj3uq0Zl5p26zKS038l2FbbyhNDJx8_3NcqZSwEx8eUW-Q5ClwznUaVXJ_B7nIKmj0JfN3Jcht4a9W5RoCkdrKO8xU1Me59cQRCQKKx_Ve3g3P6zKCNjAErEVgyhZ9aBNyqYiqlsT-gNY7VGx1gk56ZIkfgfQTKpbT_d8yErNiB2lZTBlLJFt0uW5UJeTwh2uiueTQIf4KwX4t0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0F0F0F] via-[#0F0F0F]/50 to-transparent"></div>
+</div>
+<div class="relative z-10 text-center max-w-4xl px-6">
+<div class="mb-10 flex justify-center">
+<div class="bg-red-600/20 px-4 py-2 rounded-full border border-red-600/30 flex items-center gap-2">
+<span class="material-symbols-outlined text-red-600 text-sm" data-icon="play_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<span class="text-xs font-bold tracking-widest uppercase text-white">Stream the future</span>
+</div>
+</div>
+<h1 class="font-headline-xl text-white mb-6 md:text-7xl">The Best Streaming Experience</h1>
+<p class="font-body-lg text-gray-400 mb-10 max-w-2xl mx-auto">
+                CineHub is the best streaming experience for watching your favorite movies and shows on demand, anytime, anywhere.
+            </p>
+<button class="bg-primary-container text-white px-8 py-4 rounded-lg font-bold flex items-center gap-3 mx-auto hover:scale-105 transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                Start Watching Now
+            </button>
+</div>
+</section>
+<!-- Category Section -->
+<section class="max-w-[1440px] mx-auto px-10 md:px-20 py-section-gap">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div class="max-w-2xl">
+<h2 class="font-headline-lg text-white mb-4">Explore our wide variety of categories</h2>
+<p class="font-body-md text-gray-400">Whether you're looking for a comedy to make you laugh, a drama to make you think, or a documentary to learn something new.</p>
+</div>
+<div class="flex gap-4 p-4 bg-black border border-white/10 rounded-xl">
+<button class="p-2 bg-surface-container-high rounded-lg hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<div class="flex gap-1 items-center px-2">
+<div class="w-6 h-1 bg-primary-container rounded-full"></div>
+<div class="w-4 h-1 bg-surface-container-highest rounded-full"></div>
+<div class="w-4 h-1 bg-surface-container-highest rounded-full"></div>
+</div>
+<button class="p-2 bg-surface-container-high rounded-lg hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-gutter">
+<!-- Action -->
+<div class="group bg-surface-container p-6 rounded-xl border border-white/5 hover:border-red-600/30 transition-all cursor-pointer">
+<div class="grid grid-cols-2 gap-2 mb-4">
+<div class="aspect-[2/3] bg-surface-container-highest rounded-md overflow-hidden">
+<img alt="Action movie" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="High-octane action movie poster with explosions and dramatic hero pose, cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdQB90jTHs8gqNY3ILyLLZkR2rS_OUl6kUfFJdVojKpst_TIwCXJgHgOxPS47AkwCSXjRQeNuiGNsrxzWFROjQKSB8mF-ftPV7fK8z5KVRZiHJePcxyGhqS8uQih0mZ-Od5sg2IGczl5vWeYUZi98lkFP9kWNy92Z_OAqqjn3oX0CC8aCITCfuzQrPzUSTBTolgMOyoPa0j0EO0l7PGACDcjRQ7krklWVjmQPwH99X8d4jt4vveG9O46cD8y6fqMSuvsV25fzPfcA"/>
+</div>
+<div class="aspect-[2/3] bg-surface-container-highest rounded-md overflow-hidden">
+<img alt="Action movie" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Cyberpunk action sequence in a neon-lit city street at night, cinematic photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqsNLcAnxYmUGL-R51YV_WLNrKFphjIRQjyFDe85BskHV1HV-BR0By0-yDgeWlv-QxAsaPecafgmBGUO4A4DklwZrjt9WEtHfG-RyVoC_9IyfRn5GgWQZeR7NWFqj9YK33hr5XbbQwG73f8aTuSB0SGB5jgY0b-apmTBygb7pg55c_b0rFORAbwVfYhHqV5eOXC68sHUEMdyvVuluBk_4lbqzhIJa37vRr0hXZuRViQ-0OlraaB5zn_BsKtYkRUWz0xLYJ7SMXpzk"/>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-bold text-white">Action</span>
+<span class="material-symbols-outlined text-gray-500 group-hover:text-red-600 transition-colors" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Adventure -->
+<div class="group bg-surface-container p-6 rounded-xl border border-white/5 hover:border-red-600/30 transition-all cursor-pointer">
+<div class="grid grid-cols-2 gap-2 mb-4">
+<div class="aspect-[2/3] bg-surface-container-highest rounded-md overflow-hidden">
+<img alt="Adventure movie" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Epic mountain landscape with a lone adventurer looking out over a valley, majestic golden hour light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTTuy2HHz1Vrh3a2St7_JVhjzyQs7DPusBeeSs7lNl8SfVUCEQrsULZ_JzhpEKMSx0QEDaq-sJVMxD2oDerPFNmJA95rbIujQ9G76gUlyf7tUL1uKrP6RwqaPFkSmPaeCPn9tbRQ8fDrsLPeHNoIwla41C6HZl2pQigdyIu1a3PndfLkmMBfwunYsUWxl0G9PQdngMTksxf70SA2tVU51Ikx7l1vPYQyNtSd982xL6iD6Cl5QC2-N0_Yr4EH3T2DajL2IXruafFt0"/>
+</div>
+<div class="aspect-[2/3] bg-surface-container-highest rounded-md overflow-hidden">
+<img alt="Adventure movie" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Distant snow capped mountain peak under a starry night sky, dramatic cinematic vista" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATgVblUAaaDQ7EAYQFpyNe1GAFQtqA5RbSiN4YQKzKFUPUKibHlikwMQtMCylMjuNlAP9Ed9AKED_QkBWqptqEYyC2aa33bRpiTc9lB2PwojXbifFKdnUdu29RcOQF9wx9G21EMQdTkXBZHnuMpTz_wpY_ryMeMbMIhu8K9gaVFdPP81PcO3kkugeCQI5xUFx75gIOEVHmLC0OSC6I5KteeIpUrdNzqxqraqYwROlbPP_xaVkCnT7GtNozYhYRVFXpgOD4qc__1dA"/>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-bold text-white">Adventure</span>
+<span class="material-symbols-outlined text-gray-500 group-hover:text-red-600 transition-colors" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Comedy -->
+<div class="group bg-surface-container p-6 rounded-xl border border-white/5 hover:border-red-600/30 transition-all cursor-pointer">
+<div class="grid grid-cols-2 gap-2 mb-4">
+<div class="aspect-[2/3] bg-surface-container-highest rounded-md overflow-hidden">
+<img alt="Comedy movie" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Cheerful group of friends laughing together in a bright, colorful setting, vibrant cinematic feel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAXCVscXcHPsOCshfb6PgW5rzb810ZsuH-iH8Yv9oEi4Vk6f3yz85gjBqyS8vdWj8E5tpym91nllE5YiIjoAP9swoIeLH1CBiz9WsEnQzS_GCXXittM-fexRkKNjrndmFkvTinZojWxg3agvLGuYXk_eL2Yjef6iHsGic6pOuwUKoXZN5UXvgGWOzQHQBrp2nIhNjKOatvDAdlFaKKUZMV9DkTQHzVRVSWJHkw3CKoKflaKGJ5kHzOxXBw7IkZLtzpYohiWvQorow"/>
+</div>
+<div class="aspect-[2/3] bg-surface-container-highest rounded-md overflow-hidden">
+<img alt="Comedy movie" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Quirky colorful interior with playful props, vibrant and fun lighting style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo-snDCR44qLL_Vgl3ofTlVqnSfbnNrbrgmwGPi_UeeVhE5GBrYvpr9IgrmXW3c0Vjt6yfYEZ-2KOwHWlp9E0_KEhsnIsVbN4br4NSAg0BOnv8KHnarV3LSxSxo4WcD20J6_bfS1vB8AlB83uMqDClHsk8qBx8_YNat0mnzL6ATEnANyixOqBmQKa08yl14JwyfEckpuqNH2fC-Zv0ceS6MEFuilDI2PHkIMO0pnGQI5Q7eAAKC0Xbq2HWuQTtW8gr9Lxnq_V7kts"/>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-bold text-white">Comedy</span>
+<span class="material-symbols-outlined text-gray-500 group-hover:text-red-600 transition-colors" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Drama -->
+<div class="group bg-surface-container p-6 rounded-xl border border-white/5 hover:border-red-600/30 transition-all cursor-pointer">
+<div class="grid grid-cols-2 gap-2 mb-4">
+<div class="aspect-[2/3] bg-surface-container-highest rounded-md overflow-hidden">
+<img alt="Drama movie" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Moody cinematic portrait of a person in shadow, dramatic side lighting, emotional tone" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD85gfI2UwriucaN2lRZvYEG3N1R3LWECFhZvpuZayxjLaEAg5pO0Z-MdiwoPHePy1yvaOVeQAH4lD_voSNH_NKr6hscpBqjJrZOfSc4XErQGw8NDD4DgyYunYRE_xYwcQbIpJ7uBZlvQ3Ug9GH3BDJiILxzULHWjPdf0PV73N4NDtB5y-qvfchgHuKxnS53gwDTjJp3_b4S8-dfo8olBiSxSyVvwgYoqJF4UJXIohTryLfoyOOqE2ljwyhqGi2sgGqSG-kTBBIyXg"/>
+</div>
+<div class="aspect-[2/3] bg-surface-container-highest rounded-md overflow-hidden">
+<img alt="Drama movie" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Classic film projector in a dimly lit room, vintage cinematic atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjlOFVkow-QGYVvXZhzxesQCgBAwP7CpWhSqoY3GX3WbvB16MtnHWCzU_hlF7En_s4OG_TsTd36rehLd9jSB_u1lr9POMZURrSsfEkGDTQyjqepjdZkHVB3gDbI132w1BW9qXOQQNUITBx4VeXW2EWFPlHeeyXH3RoqsHDdzU7zkUDxv0TtqZ9uOBWCtNPxVO4kKDyiqsDRkBZ6bHPhpFip6Mdqu4qupzQqL8BKWUUyNlL007ESjZZ5f_iEGJLZX_n2eyISlakxsM"/>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-bold text-white">Drama</span>
+<span class="material-symbols-outlined text-gray-500 group-hover:text-red-600 transition-colors" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Horror -->
+<div class="group bg-surface-container p-6 rounded-xl border border-white/5 hover:border-red-600/30 transition-all cursor-pointer">
+<div class="grid grid-cols-2 gap-2 mb-4">
+<div class="aspect-[2/3] bg-surface-container-highest rounded-md overflow-hidden">
+<img alt="Horror movie" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Eerie dark forest path at night with thick fog and moonlight filtering through trees, suspenseful mood" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxTLCU1eYn-h-1VT-9yxbfIPfeytOst9OkOR55_6AghpAlVChAeU2mNUlEGWFlyQJvo1hFOio6-qaAyPlSJ8AN-aUyXkok5Vo-WOj_9-R-IRTNgRWAVUFaZ3NEM1spLoa_VPGkfznDWv-1sFf6b2Yb1kCa5hMESdcmpOTjfjSdmtGLWBsIqanYMPZKFbMC4KGIv0yvF5p2hKdO_-xV1bh3E7PWLNxT4YqwrDElGK-akTc-3UA-zovL8GRSY28ZZ916nQJ9jSCXr2k"/>
+</div>
+<div class="aspect-[2/3] bg-surface-container-highest rounded-md overflow-hidden">
+<img alt="Horror movie" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Old abandoned house interior with dramatic shadows and low-key lighting, haunting vibe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXLHIAdyroEfdyzwuyV5PyeyNtUww5nGZdc2fv7B72ZuBBfAOutgg1qGlSn8UbE-ap_eAGpWvSJj5DDrIX5WTCMdFBGpyEqr4Y20bHENftnJmj63UC9Jivpd7fwrndoDSSc3yWBpbwOs4GIMcWdj9pVn6llB-x568h8USH5LHzx0K2Fo2E30vtSlNcnwuHEy3F8EDsLTT97Ed_0YYH1wqUjP7pBNMb9NptucXHDZi9YNR2JnKx90SokbfuyWK1Epn-RLY0eHJb-X8"/>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-bold text-white">Horror</span>
+<span class="material-symbols-outlined text-gray-500 group-hover:text-red-600 transition-colors" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Devices Section -->
+<section class="max-w-[1440px] mx-auto px-10 md:px-20 py-section-gap">
+<div class="mb-16">
+<h2 class="font-headline-lg text-white mb-4">We Provide you streaming experience across various devices</h2>
+<p class="font-body-md text-gray-400 max-w-3xl">With CineHub, you can enjoy your favorite movies and TV shows anytime, anywhere. Our platform is designed to be compatible with a wide range of devices.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Smartphone -->
+<div class="p-8 bg-gradient-to-br from-surface-container-high to-surface-container border border-white/5 rounded-2xl">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest border border-red-600/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-red-600" data-icon="smartphone">smartphone</span>
+</div>
+<h3 class="font-headline-md text-white">Smartphones</h3>
+</div>
+<p class="text-gray-400 font-body-md leading-relaxed">CineHub is optimized for both Android and iOS devices. Watch on our mobile app or web browser.</p>
+</div>
+<!-- Tablet -->
+<div class="p-8 bg-gradient-to-br from-surface-container-high to-surface-container border border-white/5 rounded-2xl">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest border border-red-600/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-red-600" data-icon="tablet_mac">tablet_mac</span>
+</div>
+<h3 class="font-headline-md text-white">Tablet</h3>
+</div>
+<p class="text-gray-400 font-body-md leading-relaxed">Enjoy the larger screen of your tablet for a more immersive viewing experience on the go.</p>
+</div>
+<!-- Smart TV -->
+<div class="p-8 bg-gradient-to-br from-surface-container-high to-surface-container border border-white/5 rounded-2xl">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest border border-red-600/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-red-600" data-icon="tv">tv</span>
+</div>
+<h3 class="font-headline-md text-white">Smart TV</h3>
+</div>
+<p class="text-gray-400 font-body-md leading-relaxed">Watch on your big screen with our native Smart TV apps for Samsung, LG, and more.</p>
+</div>
+<!-- Laptops -->
+<div class="p-8 bg-gradient-to-br from-surface-container-high to-surface-container border border-white/5 rounded-2xl">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest border border-red-600/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-red-600" data-icon="laptop">laptop</span>
+</div>
+<h3 class="font-headline-md text-white">Laptops</h3>
+</div>
+<p class="text-gray-400 font-body-md leading-relaxed">Stream directly from your Chrome, Safari, or Firefox browser on any PC or Mac.</p>
+</div>
+<!-- Gaming Consoles -->
+<div class="p-8 bg-gradient-to-br from-surface-container-high to-surface-container border border-white/5 rounded-2xl">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest border border-red-600/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-red-600" data-icon="sports_esports">sports_esports</span>
+</div>
+<h3 class="font-headline-md text-white">Gaming Consoles</h3>
+</div>
+<p class="text-gray-400 font-body-md leading-relaxed">Available on PlayStation and Xbox consoles for a seamless entertainment hub setup.</p>
+</div>
+<!-- VR Headsets -->
+<div class="p-8 bg-gradient-to-br from-surface-container-high to-surface-container border border-white/5 rounded-2xl">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest border border-red-600/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-red-600" data-icon="vrpano">vrpano</span>
+</div>
+<h3 class="font-headline-md text-white">VR Headsets</h3>
+</div>
+<p class="text-gray-400 font-body-md leading-relaxed">Experience a virtual cinema environment with our cutting-edge VR application.</p>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="max-w-[1440px] mx-auto px-10 md:px-20 py-section-gap">
+<div class="flex flex-col md:flex-row justify-between mb-16 gap-12">
+<div class="max-w-xl">
+<h2 class="font-headline-lg text-white mb-4">Frequently Asked Questions</h2>
+<p class="font-body-md text-gray-400">Got questions? We've got answers! Check out our FAQ section to find answers to the most common questions about CineHub.</p>
+<button class="mt-8 bg-primary-container text-white px-6 py-3 rounded-lg font-bold hover:scale-105 transition-all">Ask a Question</button>
+</div>
+<div class="flex-1 space-y-4">
+<!-- FAQ Item 1 -->
+<div class="group border-b border-white/10 pb-6">
+<div class="flex justify-between items-center cursor-pointer">
+<div class="flex items-center gap-4">
+<span class="bg-surface-container px-4 py-2 rounded-lg text-white font-bold border border-white/5">01</span>
+<h4 class="font-headline-md text-white text-lg">What is CineHub?</h4>
+</div>
+<span class="material-symbols-outlined text-white" data-icon="add">add</span>
+</div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="group border-b border-white/10 pb-6">
+<div class="flex justify-between items-center cursor-pointer">
+<div class="flex items-center gap-4">
+<span class="bg-surface-container px-4 py-2 rounded-lg text-white font-bold border border-white/5">02</span>
+<h4 class="font-headline-md text-white text-lg">How much does CineHub cost?</h4>
+</div>
+<span class="material-symbols-outlined text-white" data-icon="remove">remove</span>
+</div>
+<div class="mt-4 pl-16 text-gray-400 font-body-md">
+                        CineHub offers multiple subscription plans to fit your needs, starting from just $9.99/month. You can choose between Basic, Standard, and Premium options.
+                    </div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="group border-b border-white/10 pb-6">
+<div class="flex justify-between items-center cursor-pointer">
+<div class="flex items-center gap-4">
+<span class="bg-surface-container px-4 py-2 rounded-lg text-white font-bold border border-white/5">03</span>
+<h4 class="font-headline-md text-white text-lg">What content is available on CineHub?</h4>
+</div>
+<span class="material-symbols-outlined text-white" data-icon="add">add</span>
+</div>
+</div>
+<!-- FAQ Item 4 -->
+<div class="group border-b border-white/10 pb-6">
+<div class="flex justify-between items-center cursor-pointer">
+<div class="flex items-center gap-4">
+<span class="bg-surface-container px-4 py-2 rounded-lg text-white font-bold border border-white/5">04</span>
+<h4 class="font-headline-md text-white text-lg">How can I watch CineHub?</h4>
+</div>
+<span class="material-symbols-outlined text-white" data-icon="add">add</span>
+</div>
+</div>
+<!-- FAQ Item 5 -->
+<div class="group border-b border-white/10 pb-6">
+<div class="flex justify-between items-center cursor-pointer">
+<div class="flex items-center gap-4">
+<span class="bg-surface-container px-4 py-2 rounded-lg text-white font-bold border border-white/5">05</span>
+<h4 class="font-headline-md text-white text-lg">How do I cancel my subscription?</h4>
+</div>
+<span class="material-symbols-outlined text-white" data-icon="add">add</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Section -->
+<section class="max-w-[1440px] mx-auto px-10 md:px-20 py-section-gap">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div class="max-w-2xl">
+<h2 class="font-headline-lg text-white mb-4">Choose the plan that's right for you</h2>
+<p class="font-body-md text-gray-400">Join CineHub and select from our flexible subscription plans tailored to suit your viewing preferences.</p>
+</div>
+<div class="flex p-2 bg-black border border-white/10 rounded-xl">
+<button class="px-6 py-2 bg-surface-container-high text-white font-bold rounded-lg">Monthly</button>
+<button class="px-6 py-2 text-gray-400 font-bold hover:text-white transition-colors">Yearly</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Basic Plan -->
+<div class="p-10 bg-surface-container-low border border-white/10 rounded-2xl flex flex-col hover:border-red-600/20 transition-all">
+<h3 class="font-headline-md text-white mb-2">Basic Plan</h3>
+<p class="text-gray-400 font-body-md mb-8">Enjoy an extensive library of movies and shows, featuring a range of content.</p>
+<div class="mb-10">
+<span class="text-4xl font-bold text-white">$9.99</span>
+<span class="text-gray-500">/month</span>
+</div>
+<div class="flex flex-col gap-4 mb-12">
+<button class="w-full py-4 rounded-lg border border-white/10 font-bold text-white hover:bg-white/5 transition-colors">Start Free Trial</button>
+<button class="w-full py-4 rounded-lg bg-primary-container font-bold text-white hover:bg-red-700 transition-colors">Choose Plan</button>
+</div>
+</div>
+<!-- Standard Plan -->
+<div class="p-10 bg-surface-container-low border border-white/10 rounded-2xl flex flex-col hover:border-red-600/20 transition-all scale-105 z-10 shadow-2xl shadow-black">
+<h3 class="font-headline-md text-white mb-2">Standard Plan</h3>
+<p class="text-gray-400 font-body-md mb-8">Access to a wider selection of movies and shows, including HD content.</p>
+<div class="mb-10">
+<span class="text-4xl font-bold text-white">$14.99</span>
+<span class="text-gray-500">/month</span>
+</div>
+<div class="flex flex-col gap-4 mb-12">
+<button class="w-full py-4 rounded-lg border border-white/10 font-bold text-white hover:bg-white/5 transition-colors">Start Free Trial</button>
+<button class="w-full py-4 rounded-lg bg-primary-container font-bold text-white hover:bg-red-700 transition-colors">Choose Plan</button>
+</div>
+</div>
+<!-- Premium Plan -->
+<div class="p-10 bg-surface-container-low border border-white/10 rounded-2xl flex flex-col hover:border-red-600/20 transition-all">
+<h3 class="font-headline-md text-white mb-2">Premium Plan</h3>
+<p class="text-gray-400 font-body-md mb-8">Experience the best streaming quality with 4K Ultra HD and multi-device access.</p>
+<div class="mb-10">
+<span class="text-4xl font-bold text-white">$19.99</span>
+<span class="text-gray-500">/month</span>
+</div>
+<div class="flex flex-col gap-4 mb-12">
+<button class="w-full py-4 rounded-lg border border-white/10 font-bold text-white hover:bg-white/5 transition-colors">Start Free Trial</button>
+<button class="w-full py-4 rounded-lg bg-primary-container font-bold text-white hover:bg-red-700 transition-colors">Choose Plan</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Trial Banner -->
+<section class="max-w-[1440px] mx-auto px-10 md:px-20 py-section-gap">
+<div class="relative w-full rounded-[2rem] overflow-hidden p-16 flex flex-col md:flex-row justify-between items-center gap-10">
+<img alt="Cinema banner" class="absolute inset-0 w-full h-full object-cover" data-alt="Wide shot of a modern cinematic theater with red velvet seats and ambient low lighting, high production quality" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrIjGdDVlrhFgWQSiMl8W37Gjd32JdirMdUZzCzAP-kIio0qjmfnP45kTFVzoe_P9aCYu19Fcb7CwHAMrZ28VQ6b6HnX936AM5o0bzmeoHullhl_6d8yFoFUhNLDnzvpmp9sd7pr53kg8pLccPRIO6uscdOW17ITMsTytNPbT0D8erUbBVJrOi7ipLxMuZfIin4u0e_uFzg4SIybgBZdq54Z55DWwqi4N6qZOwbt9kniOuSxxjK4vLxgGywA23h0gnFjZqaCAHg4E"/>
+<div class="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
+<div class="relative z-10 max-w-3xl">
+<h2 class="font-headline-xl text-white mb-4">Start your free trial today!</h2>
+<p class="font-body-lg text-gray-300">This is a clear and concise call to action that encourages users to sign up for a free trial of CineHub.</p>
+</div>
+<div class="relative z-10 shrink-0">
+<button class="bg-primary-container text-white px-10 py-5 rounded-xl font-bold text-lg hover:scale-105 transition-all shadow-xl shadow-red-600/20">Start a Free Trial</button>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-[#0F0F0F] border-t border-white/10">
+<div class="max-w-[1440px] mx-auto px-10 md:px-20 py-24 flex flex-col md:flex-row justify-between gap-12">
+<div class="max-w-xs">
+<div class="text-xl font-bold text-red-600 mb-6 font-['Be_Vietnam_Pro'] uppercase">CineHub</div>
+<p class="font-['Be_Vietnam_Pro'] text-sm text-gray-400 mb-8">CineHub is the premier platform for cinematic exploration. Immerse yourself in worlds beyond imagination.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-white p-2 bg-surface-container rounded-lg cursor-pointer hover:text-red-600 transition-colors" data-icon="facebook">social_leaderboard</span>
+<span class="material-symbols-outlined text-white p-2 bg-surface-container rounded-lg cursor-pointer hover:text-red-600 transition-colors" data-icon="twitter">retweet</span>
+<span class="material-symbols-outlined text-white p-2 bg-surface-container rounded-lg cursor-pointer hover:text-red-600 transition-colors" data-icon="linkedin">link</span>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-24">
+<div class="flex flex-col gap-4">
+<h5 class="text-white font-bold font-['Be_Vietnam_Pro']">Home</h5>
+<a class="text-gray-500 hover:text-white transition-colors font-['Be_Vietnam_Pro'] text-sm" href="#">Categories</a>
+<a class="text-gray-500 hover:text-white transition-colors font-['Be_Vietnam_Pro'] text-sm" href="#">Movies</a>
+<a class="text-gray-500 hover:text-white transition-colors font-['Be_Vietnam_Pro'] text-sm" href="#">Shows</a>
+</div>
+<div class="flex flex-col gap-4">
+<h5 class="text-white font-bold font-['Be_Vietnam_Pro']">Movies</h5>
+<a class="text-gray-500 hover:text-white transition-colors font-['Be_Vietnam_Pro'] text-sm" href="#">Genres</a>
+<a class="text-gray-500 hover:text-white transition-colors font-['Be_Vietnam_Pro'] text-sm" href="#">Trending</a>
+<a class="text-gray-500 hover:text-white transition-colors font-['Be_Vietnam_Pro'] text-sm" href="#">New Release</a>
+</div>
+<div class="flex flex-col gap-4">
+<h5 class="text-white font-bold font-['Be_Vietnam_Pro']">Support</h5>
+<a class="text-gray-500 hover:text-white transition-colors font-['Be_Vietnam_Pro'] text-sm" href="#">Contact Us</a>
+<a class="text-gray-500 hover:text-white transition-colors font-['Be_Vietnam_Pro'] text-sm" href="#">FAQ</a>
+<a class="text-gray-500 hover:text-white transition-colors font-['Be_Vietnam_Pro'] text-sm" href="#">Feedback</a>
+</div>
+<div class="flex flex-col gap-4">
+<h5 class="text-white font-bold font-['Be_Vietnam_Pro']">Subscription</h5>
+<a class="text-gray-500 hover:text-white transition-colors font-['Be_Vietnam_Pro'] text-sm" href="#">Plans</a>
+<a class="text-gray-500 hover:text-white transition-colors font-['Be_Vietnam_Pro'] text-sm" href="#">Features</a>
+</div>
+</div>
+</div>
+<div class="max-w-[1440px] mx-auto px-10 md:px-20 py-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-['Be_Vietnam_Pro'] text-sm text-gray-400">© 2024 CineHub. All rights reserved.</p>
+<div class="flex gap-6 font-['Be_Vietnam_Pro'] text-xs text-gray-500">
+<a class="hover:text-white" href="#">Terms of Use</a>
+<a class="hover:text-white" href="#">Privacy Policy</a>
+<a class="hover:text-white" href="#">Cookie Policy</a>
+</div>
+</div>
+</footer>
+</body></html>

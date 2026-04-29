@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CineHub - Movies &amp; Shows</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#131313",
+                        "on-secondary-fixed-variant": "#474746",
+                        "surface-container-highest": "#353534",
+                        "on-tertiary-container": "#f9f6f6",
+                        "primary-fixed": "#ffdad4",
+                        "error": "#ffb4ab",
+                        "outline-variant": "#5f3f3a",
+                        "inverse-on-surface": "#313030",
+                        "on-primary": "#690000",
+                        "tertiary": "#c8c6c5",
+                        "error-container": "#93000a",
+                        "surface-bright": "#3a3939",
+                        "on-background": "#e5e2e1",
+                        "on-tertiary-fixed": "#1b1c1c",
+                        "secondary-fixed": "#e5e2e1",
+                        "on-surface": "#e5e2e1",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "inverse-primary": "#c00000",
+                        "secondary": "#c8c6c5",
+                        "tertiary-fixed": "#e4e2e1",
+                        "on-secondary-container": "#b7b5b4",
+                        "on-primary-fixed": "#410000",
+                        "background": "#131313",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-secondary": "#313030",
+                        "surface-tint": "#ffb4a8",
+                        "surface-variant": "#353534",
+                        "on-surface-variant": "#e9bcb5",
+                        "on-tertiary": "#303030",
+                        "surface-dim": "#131313",
+                        "surface-container-lowest": "#0e0e0e",
+                        "outline": "#b08781",
+                        "on-primary-fixed-variant": "#930100",
+                        "on-error-container": "#ffdad6",
+                        "secondary-container": "#474746",
+                        "primary": "#ffb4a8",
+                        "inverse-surface": "#e5e2e1",
+                        "primary-container": "#e50000",
+                        "surface-container-low": "#1c1b1b",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container": "#201f1f",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "on-error": "#690005",
+                        "on-primary-container": "#fff6f4",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "tertiary-container": "#727171"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "120px",
+                        "container-max": "1440px",
+                        "margin-page": "80px",
+                        "gutter": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Manrope"],
+                        "headline-xl": ["Be Vietnam Pro"],
+                        "headline-lg": ["Be Vietnam Pro"],
+                        "body-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "headline-md": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-xl": ["48px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0F0F0F;
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .cinema-gradient {
+            background: linear-gradient(0deg, #0F0F0F 0%, rgba(15,15,15,0) 50%, rgba(15,15,15,0.4) 100%);
+        }
+    </style>
+</head>
+<body class="font-body-md">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-lg border-b border-white/10 shadow-2xl shadow-black/50">
+<div class="flex justify-between items-center h-20 px-10 md:px-20 w-full max-w-[1440px] mx-auto">
+<div class="text-2xl font-black text-red-600 tracking-tight uppercase">CineHub</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-['Be_Vietnam_Pro'] font-medium text-sm tracking-wide text-gray-400 hover:text-white transition-colors" href="#">Home</a>
+<a class="font-['Be_Vietnam_Pro'] font-medium text-sm tracking-wide text-white border-b-2 border-red-600 pb-1" href="#">Movies &amp; Shows</a>
+<a class="font-['Be_Vietnam_Pro'] font-medium text-sm tracking-wide text-gray-400 hover:text-white transition-colors" href="#">Support</a>
+<a class="font-['Be_Vietnam_Pro'] font-medium text-sm tracking-wide text-gray-400 hover:text-white transition-colors" href="#">Subscriptions</a>
+</div>
+<div class="flex items-center space-x-6">
+<button class="hover:scale-105 hover:text-red-500 transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined text-white">search</span>
+</button>
+<button class="hover:scale-105 hover:text-red-500 transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined text-white">notifications</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative w-full h-[921px] overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Cinematic wide shot of the Avengers Endgame final battle landscape with dramatic smoke and glowing cosmic energy in the sky" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQtZ4vG02kLKN8zLJtw6HB_eOHgKvCl4LYRuvGWUABhm-e5dU_JTU22R8L1PhmwIqMbFCMAqXncbxkDUKw_p_XM2iC-tjX0PW2phtbGICcezPj2SqjzpxDEjTYT0J0gsoxI9rtcc7726IOnGC0oiTur04Hv74osJJL4RgqPdbEs2Y72nXhLjvCr9dCY5Z9iPmjl6WDF29bsvuk94iybiPRZgfyRJZB1awQz1ryOEUQ5paymsfy3SdPlkJUkCg6Lx3rSf2LjzA1rJo')">
+<div class="absolute inset-0 cinema-gradient"></div>
+</div>
+<div class="relative z-10 h-full flex flex-col justify-end items-center text-center px-10 pb-20 max-w-[1200px] mx-auto">
+<h1 class="font-headline-xl text-white mb-4">Avengers: Endgame</h1>
+<p class="font-body-lg text-gray-300 max-w-3xl mb-10">After the devastating events of Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to restore balance to the universe.</p>
+<div class="flex flex-wrap items-center justify-center gap-4">
+<button class="flex items-center gap-2 bg-primary-container text-on-primary-container px-8 py-4 rounded-lg font-bold hover:scale-105 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                    Play Now
+                </button>
+<button class="p-4 bg-surface-container rounded-lg border border-white/10 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="p-4 bg-surface-container rounded-lg border border-white/10 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">thumb_up</span>
+</button>
+<button class="p-4 bg-surface-container rounded-lg border border-white/10 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">volume_up</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto px-10 md:px-20 -mt-32 relative z-20 pb-24">
+<!-- Our Genres Section -->
+<section class="mb-section-gap">
+<div class="flex justify-between items-end mb-8">
+<div>
+<span class="bg-red-600 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-widest mb-2 inline-block">Explore</span>
+<h2 class="font-headline-lg text-white">Our Genres</h2>
+</div>
+<div class="flex gap-2">
+<button class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-surface-container hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<button class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-surface-container hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-gutter">
+<!-- Genre Card -->
+<div class="bg-surface-container p-6 rounded-xl border border-white/5 hover:border-red-600/50 transition-all group cursor-pointer">
+<div class="grid grid-cols-2 gap-2 mb-4">
+<div class="aspect-square rounded bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Dark action movie scene silhouette" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVaKNaENDJI1-LgjLlkRU66PIwple1pKKgKAtke_bGid37ouFSLi1P4PvnJZk7PiQaFjTdt69znjW1UHDu54f6UEWSdPFZZ6QqPoKs2ZHbK7ftosHEXNxFuXVSfbEWsE6mgh7bCGVWuAaE6E3FFxPmCr11k8des4yVwKeMJN__yD081yE1yVMqfUEVBa8KMcC41asYtLSCDA3_kT4TNaFNCtPMX_YC-3RgAe6L17h2ZlZxibd1MDGVkGSTlntptbIkxVrvfL6ZE_E"/>
+</div>
+<div class="aspect-square rounded bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Cyberpunk city lights neon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQhTIBIJX_HF1HxyvjNCy5ZiUL5mRiBGX0jJZI-_xKkyRnmG7Nyw9aJgWlTLEcsaehKljcK1BBN-HsPfri-UoRRcYeZpBcLRil-TaWQns5qXVrWhhVXyn2T89Yqm6hrN8_FuJQ3asBcd85risaGP5G9B1UFsSUOQLuX5R-uD6BXKXTMIuxQ-ForUzREIyUCfUxpOtNuNw_QSN3MdNCcJOgpm9beueUdxHXY3tJAOl0aG6vKQV1imlAjQolirkPHMjosAcvrq83pjk"/>
+</div>
+<div class="aspect-square rounded bg-surface-container-highest overflow-hidden">
+<div class="w-full h-full bg-red-900/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-red-600">bolt</span>
+</div>
+</div>
+<div class="aspect-square rounded bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Classic film projector light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAemYFLQz8Vd61COs6abhNXF-f9OMP_R_Gaq-WJxxCWRrKCh_D7JW8c1vCgrbCQaoU4MGf4-P7zs_VsN9lAqrFuU9zTVLp13HclXrYHpZLzc0cbXUV5wvAGDzR3lrbDzCpodjaaLQOwb7SeHeCe0Bn2mo92jjmuUqEL7ayAwIcreQ0Eut-i5QpOWOsEUuSjWVhSWExet7_AxG8FVWueLETqElsfl4VNwCOv2EhGXdduqbvFYkF74nWdoBMzhYrbD2R9pB1nnrQA_bo"/>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-white">Action</span>
+<span class="material-symbols-outlined text-gray-500 group-hover:text-red-600 transition-colors">arrow_forward</span>
+</div>
+</div>
+<div class="bg-surface-container p-6 rounded-xl border border-white/5 hover:border-red-600/50 transition-all group cursor-pointer">
+<div class="grid grid-cols-2 gap-2 mb-4 opacity-70 group-hover:opacity-100">
+<div class="aspect-square rounded bg-surface-container-highest"></div>
+<div class="aspect-square rounded bg-surface-container-highest"></div>
+<div class="aspect-square rounded bg-surface-container-highest"></div>
+<div class="aspect-square rounded bg-surface-container-highest"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-white">Adventure</span>
+<span class="material-symbols-outlined text-gray-500 group-hover:text-red-600 transition-colors">arrow_forward</span>
+</div>
+</div>
+<div class="bg-surface-container p-6 rounded-xl border border-white/5 hover:border-red-600/50 transition-all group cursor-pointer">
+<div class="grid grid-cols-2 gap-2 mb-4 opacity-70 group-hover:opacity-100">
+<div class="aspect-square rounded bg-surface-container-highest"></div>
+<div class="aspect-square rounded bg-surface-container-highest"></div>
+<div class="aspect-square rounded bg-surface-container-highest"></div>
+<div class="aspect-square rounded bg-surface-container-highest"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-white">Comedy</span>
+<span class="material-symbols-outlined text-gray-500 group-hover:text-red-600 transition-colors">arrow_forward</span>
+</div>
+</div>
+<div class="bg-surface-container p-6 rounded-xl border border-white/5 hover:border-red-600/50 transition-all group cursor-pointer">
+<div class="grid grid-cols-2 gap-2 mb-4 opacity-70 group-hover:opacity-100">
+<div class="aspect-square rounded bg-surface-container-highest"></div>
+<div class="aspect-square rounded bg-surface-container-highest"></div>
+<div class="aspect-square rounded bg-surface-container-highest"></div>
+<div class="aspect-square rounded bg-surface-container-highest"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-white">Drama</span>
+<span class="material-symbols-outlined text-gray-500 group-hover:text-red-600 transition-colors">arrow_forward</span>
+</div>
+</div>
+<div class="bg-surface-container p-6 rounded-xl border border-white/5 hover:border-red-600/50 transition-all group cursor-pointer">
+<div class="grid grid-cols-2 gap-2 mb-4 opacity-70 group-hover:opacity-100">
+<div class="aspect-square rounded bg-surface-container-highest"></div>
+<div class="aspect-square rounded bg-surface-container-highest"></div>
+<div class="aspect-square rounded bg-surface-container-highest"></div>
+<div class="aspect-square rounded bg-surface-container-highest"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-white">Horror</span>
+<span class="material-symbols-outlined text-gray-500 group-hover:text-red-600 transition-colors">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Popular Top 10 Section -->
+<section class="mb-section-gap">
+<h2 class="font-headline-lg text-white mb-8">Popular Top 10 In Genres</h2>
+<div class="flex gap-4 mb-10 overflow-x-auto pb-4 no-scrollbar">
+<button class="px-6 py-2 bg-primary-container text-white rounded-lg whitespace-nowrap">All</button>
+<button class="px-6 py-2 bg-surface-container text-gray-400 rounded-lg whitespace-nowrap hover:text-white transition-colors">Action</button>
+<button class="px-6 py-2 bg-surface-container text-gray-400 rounded-lg whitespace-nowrap hover:text-white transition-colors">Adventure</button>
+<button class="px-6 py-2 bg-surface-container text-gray-400 rounded-lg whitespace-nowrap hover:text-white transition-colors">Comedy</button>
+<button class="px-6 py-2 bg-surface-container text-gray-400 rounded-lg whitespace-nowrap hover:text-white transition-colors">Drama</button>
+<button class="px-6 py-2 bg-surface-container text-gray-400 rounded-lg whitespace-nowrap hover:text-white transition-colors">Horror</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="bg-surface-container p-4 rounded-xl border border-white/5 hover:scale-[1.02] transition-transform cursor-pointer">
+<img class="w-full aspect-[2/3] object-cover rounded-lg mb-4" data-alt="Dramatic cinematic movie poster with a hooded figure in rain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0C7eqrSeyZ_rTXYKy-7MN6p_33-xU88SCeyWHOHgnWdSelJJ06f6UUeo7a9PA8B4nYLLNamlnf5s-EAbTklW9Run3HY2YZEJo3tJewng9Z5BvVMu6_IDU4bjnGoqeCpnPLkPnVRkLjcs4r1C0XrWo74zOL68d922lBbCsR06CsvQs_qr3fepeUZ0sNgDyiE0cwSvF107f47RfxkX0X7ZAVCMDuLBDk1fJKYWjYhNgArGfiPMPqx9hG7DGFT7hMuG-l3UH5jjZuQU"/>
+<div class="flex justify-between items-center">
+<span class="bg-surface-container-highest px-3 py-1 rounded text-xs text-white">Top 10 #1</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-red-600 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs text-white">4.9</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container p-4 rounded-xl border border-white/5 hover:scale-[1.02] transition-transform cursor-pointer">
+<img class="w-full aspect-[2/3] object-cover rounded-lg mb-4" data-alt="Action movie poster featuring high speed car chase in neon city" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBi7qfcadVLpU0FVHvKO1eXtC-sgFe0mqxQbov9H1ZAdwWCYe3V2u3hWCw0YYepkcRvL5bzIQzErvv_mcvepEhar5TQef_fVRerTigp_UBVqlHTs5P1dIABRMNBsEJsWLR8flsACyhz5Tt93yBNuMYXNmBfL3_OssKeGDefGmAO9uMv2Wy8og9tiEigAObjbsHTXbvdgIpU-Ovr43GeFTPmIi24Gwu4d5dJvVXTyjJEt0tb9uCDnlPxvTDnoivvDmQSFttj3jJLn-c"/>
+<div class="flex justify-between items-center">
+<span class="bg-surface-container-highest px-3 py-1 rounded text-xs text-white">Top 10 #2</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-red-600 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs text-white">4.7</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container p-4 rounded-xl border border-white/5 hover:scale-[1.02] transition-transform cursor-pointer">
+<img class="w-full aspect-[2/3] object-cover rounded-lg mb-4" data-alt="Sci-fi movie poster showing a futuristic spaceship landing on an alien planet" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ9bDGfnS6if_ZORor2fRiC9uWmSRMHFaVBY-JV0Xdo00Yz2Qah5w-LArkUjyyOhMjfvBUJdIoM3SRFLvVJds9N3o3MAo4Vzqt5swBI8Yj0wt8tV69qXKSE3qSSy8lPNKXw1XC9iXRcectN3OsFUF3gegdYDEM2Q2ndgqnlsvork6DE_-ItY9ww2XdM0lwIfxGer1dwPu0dotlvt7jp-0Op1fiOGaK8sLZyEZ9WOFIYQXzw_Iw8E0ckDkXF3dhPOeN3FUC0XLJdn4"/>
+<div class="flex justify-between items-center">
+<span class="bg-surface-container-highest px-3 py-1 rounded text-xs text-white">Top 10 #3</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-red-600 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs text-white">4.6</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container p-4 rounded-xl border border-white/5 hover:scale-[1.02] transition-transform cursor-pointer">
+<img class="w-full aspect-[2/3] object-cover rounded-lg mb-4" data-alt="Noir movie poster close up of a detective in a fedora" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiLBPUJQD7S6qaRKnI5rTJ8ApbKxFmodEnhU_7ba3RKJ63b9jBD9CI9rFXjdv3V7tcaLDdWQkJ6meWpvWAQASYhdk6maf34Ry1hS1frog3Rt3M2uS0dRuc-l2e0WTfJA7gUp-V4KtQcCgyUs3p8ztn2In4fjhLW97L5BIlLL--99OIT43iVE4E1lRdBddL71Izw0Zr8KczMXe3hzmFB1cT23IHB7Qdr6q-_SeRosqQ8A8KBf_5Xjqqr63AVyCrfxW27E4LwwglTSg"/>
+<div class="flex justify-between items-center">
+<span class="bg-surface-container-highest px-3 py-1 rounded text-xs text-white">Top 10 #4</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-red-600 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs text-white">4.5</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trending Now Slider -->
+<section class="mb-section-gap">
+<div class="flex justify-between items-center mb-8">
+<h2 class="font-headline-lg text-white">Trending Now</h2>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center bg-surface-container">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+</button>
+<button class="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center bg-surface-container">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+<!-- Movie Posters (Smaller) -->
+<div class="group relative aspect-[2/3] rounded-xl overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Superhero comic style movie poster with dynamic action pose" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABhRWZ2uOYfe0KvJhDSlnioyZTFGMbyDxqkIlY0t_Gy6bNisaIB1Zii2oEvKJp1y9Loh_Jb-0DZ0Iw8KiIdXbZQ3bTOT9hsQznb-_yANiGChx_y_WrBmhLwYxx5UeSU_mUHaLztSwoqNDnGJT2Fp_xgPgtUNz2vpc9AZu3p7iAPHeC79NyPQgl9vZqadQnnY5SNx06tLJryjqGzp6H8BOZjG5DP7gm3qsSg57p93qefbrMc963zS7fThvoTL1apnUZN1U0S3HwyLg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+<p class="text-white font-bold">Rise of Shadows</p>
+<p class="text-xs text-gray-300">1h 45min</p>
+</div>
+</div>
+<div class="group relative aspect-[2/3] rounded-xl overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Horror movie poster with creepy dark hallway and single light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARWp_ZG8IXDMLLIrG2mYrDWm5Tihoy3d8qWzqoD8KB-IrI64wEKTXPird9tRcyTIsiOA6_dmgUGtTu1JnriOwb_wz7_c3A7S6EOarOE3wxY8uKRKvCo3SVK19Y98y8kh3INNptPhhWDc5AH-O2h1YthoWTyC9vWA7-LSdW5CAO20I-OIo1fHJ27sKLqRRx4Sfsp-l2rYR2F72YcEXj3KKiISkLYWftH0GGwUcnzMWb4yzL4DAONjSuejr7jem2jhK2WhWxA_TBU6k"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+<p class="text-white font-bold">The Silent Hall</p>
+<p class="text-xs text-gray-300">2h 10min</p>
+</div>
+</div>
+<div class="group relative aspect-[2/3] rounded-xl overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Animation movie poster vibrant colorful fantasy world" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDK7oUYTHsq93KC_KXtzFvdNyzsYyhB5_PLI1kGU1NLzLs3r6jKPK0s1JqtR16lzl-9oH-foAOhjcAgt4eCIGNfE7Sy9LE2Efg42c1Q93YsMBHiqBhj_uxMtIN5lSFvoSIayg73WrWIb1sJVqh0uNfsJQTxT5kjB21xphGvtPYFxqYBE5W6LKUv0aCt2wxmpj64uEMpqAy-RXYpicJunYLgfBvJ9uZBDa6RdQRYYgckmQMTfVOy2SjUo3z8imFX_VVS2t8J6gTLbls"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+<p class="text-white font-bold">Sky Kingdom</p>
+<p class="text-xs text-gray-300">1h 30min</p>
+</div>
+</div>
+<div class="group relative aspect-[2/3] rounded-xl overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Romantic drama movie poster of a couple in a misty field" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJ1gAga8fV7rQ_TrEd_pJg2crn5y45g_GqbuVjElb626wq3vWwsZGQLlykdLwKhziX4o5U9fwz-nDBETYiXANzJITqb6J-Vj-CZK5KR0ezDTd6G8exVzk_v1LFKZvu_6dCfsGboztEjzAxpPLogovlmZLKslntL9l_2d4eeT8-Hh0w7_Sqh63hTfHu0xtSpLIJDa_7e25H0TZiyKPZCjPy4h9h05KfsmZc5RYt1cKYgZi8Hvm8rPU5qP469wa1TbHTU5IECpDqg-g"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+<p class="text-white font-bold">Autumn Dreams</p>
+<p class="text-xs text-gray-300">1h 55min</p>
+</div>
+</div>
+<div class="group relative aspect-[2/3] rounded-xl overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Classic cinema theater interior view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQUZ6YXMSVBUymo_ue2M8r3ZRKbkkAoa1r8_tW6Ur4ncFDixgUM4q4z2nSZyQbObaEsOVVCFHIe6T7eOpkuOoMKBy9YxkUK3U2JJEZ1v3dReEfSDqiY75homj6ekgHdwjo2Q0JirKfUyn2Mrk7NF-xGpLXANpIYdDYNxcIi56VJdJTI9EgTpmomIXc9zKptUY_uz6gkh8MrIt0hywgrjPDX1Z_r0WlzdqGeysav6oz3fkG1e0F6PLlHT8CBVwWXs9jQFlNqzK5NRo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+<p class="text-white font-bold">The Last Screen</p>
+<p class="text-xs text-gray-300">2h 05min</p>
+</div>
+</div>
+</div>
+</section>
+<!-- New Releases -->
+<section class="mb-section-gap">
+<h2 class="font-headline-lg text-white mb-8">New Releases</h2>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+<div class="group relative aspect-[2/3] rounded-xl overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Neon futuristic sci-fi poster" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAePNcH0UiaxHPwvrfFaSV4tlULVN71onk0KxBK6UyE6nvJ1gMWhMihG4eUN6Ng2ivc_3LMhc37A-Rg0RCEzbIEBMnk6wWcYdiZd1tpnDHsi1X0rjMARtFaCq85ya3ApNATtG1jeD3rX1REh6RvC_izOOEOD4luhcHIta2FX7hdpuGI3Jr_Pc1MBlKKbieWxOBv18tWcXnXd4oe5QcvtN8lXNctO2Ek7AteIVfdDwXLHTX1vMWZ36fT_W9BDHYh8G9zN7IQeDaZVIc"/>
+<div class="absolute top-2 left-2 bg-red-600 text-[10px] px-2 py-0.5 rounded font-bold uppercase">New</div>
+</div>
+<div class="group relative aspect-[2/3] rounded-xl overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Cinematography camera on set" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAThbyhQGy33q7OMj2qb8Db1bNb-7isdHCSCy1IuWik3U9CLqpV18xFQTAEHnNZ4GK2hAl8wE_VXHUipgTX6-kkVNurOsZW32CX66bIuZobuk2Th-U1ytsGaUZL_wK8z_Mi66xU9PmWzAgla8XAdoGdDc7OePNvlA_OdFWI_N8KtOJ1nH9kyPlGkSr3YW3aqgGy-9Ioem5hpqkabNmRUTqIPS1j71X1YyjDv41cmajoI8FkpELfYagC0209_vCr0kSR5y_znVRkCh4"/>
+<div class="absolute top-2 left-2 bg-red-600 text-[10px] px-2 py-0.5 rounded font-bold uppercase">New</div>
+</div>
+<div class="group relative aspect-[2/3] rounded-xl overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Action movie visual effects" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlDmOR3xFV7ouSoFtNcIm6mUilJWrZg2lTwkZnbv818arnjO5Yypksdfr7NcIvTb55CgDojAPBY8QM_wlP_7PZtxmthJmDjx-Q0eIJPAHws0YELVD4X-WzEe8hxlR_45bKuOsaODduvZpDRh_WX5y1i7xQmCmXV2eOnLpD-f1rm4jriD1CX3HV8XXCkpcc41QywO5CUzvtpBd-rxuUQrov5Hv2615KZRtyopPY6r094InmtVvBN3z8fNLVmIyAxgGx7nrGAcHqSj8"/>
+<div class="absolute top-2 left-2 bg-red-600 text-[10px] px-2 py-0.5 rounded font-bold uppercase">New</div>
+</div>
+<div class="group relative aspect-[2/3] rounded-xl overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Portrait of a dramatic actress" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZnA3PipW0MzjwzzWrAtC9OHM-A3TYhQp5EcP22h4pYP2_EPKjUUvhAWKnG6lAwYX_Qd56TQrQ8XiepNV9KReECgERIJTx_StWSE1q5dUGyoVsAAh2d7WDELNxhsBVvsDy9c4tG7dMvdEqcnzfKGChQqVRj_EYv-tMYpPcBos2CmhpKWPzrzDOSpdQpAU3rAYujwBgGfGUMsp-Kuut6C-A6HYZTUUkt6egwidfRrRPxDGakWZiaSsUAyxgdE-3sNgcD4taYtfjj3U"/>
+<div class="absolute top-2 left-2 bg-red-600 text-[10px] px-2 py-0.5 rounded font-bold uppercase">New</div>
+</div>
+<div class="group relative aspect-[2/3] rounded-xl overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Creative abstract cinema poster" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFNyrnkqhoCu0k15L3yyeca-nbNYPPPdG-apeUWX5iciLQkCnlSgAWyEknLmeXkOXDcXdlm8dJIYGIEX53o7TxoCM8epQogz9z5x7z1XG1_gJrGnnBm-Ub71puXqpXprBdyk40HoGRY4YTDNrTKeH3Hshxuv7djvRNBdOv0N4GAgnOR7RV9nNFkX0MZa7GhF4xNjcn69oNOLsTegQvf4G0bhkaTyzHv2S0AUmHlUoTRsIi4hsiM72bjyZTUdUHtNqu00XRYbAU47s"/>
+<div class="absolute top-2 left-2 bg-red-600 text-[10px] px-2 py-0.5 rounded font-bold uppercase">New</div>
+</div>
+</div>
+</section>
+<!-- Must Watch Movies -->
+<section class="mb-section-gap">
+<h2 class="font-headline-lg text-white mb-8">Must - Watch Movies</h2>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="bg-surface-container p-4 rounded-xl border border-white/5 hover:bg-surface-container-high transition-all">
+<img class="w-full aspect-[2/3] object-cover rounded-lg mb-4" data-alt="High detail movie poster with gritty texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClCGROJDN3WHADtcwTcR3tYy5Yj1poq9dTvNrZ3r9COCFf3TEk38Kn4GhcOOTa_7HmFqz9AUZwrulGPEFWowqQiajro8eENOhloOc-GaBYDxO5LOkaDiQsTVn5KY_CvmTuwdokT3ZWy9VruDs2BQvtID2-jKUphPGpTWuN216jl1b8qOd2Ne6qG1Y2js56bHfK5trcL0VUAEgm3zLlTQEAPoW88Ixw8PrjSrUCN_G3llpUQqNBw9DJa2DkBR74MWtHmR_DJIvEjvU"/>
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm font-bold text-white">The Last Guardian</span>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-red-600 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-red-600 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-red-600 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-red-600 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-gray-600 text-xs">star</span>
+</div>
+</div>
+<p class="text-xs text-gray-500">Action • Sci-Fi • 2h 45min</p>
+</div>
+<div class="bg-surface-container p-4 rounded-xl border border-white/5 hover:bg-surface-container-high transition-all">
+<img class="w-full aspect-[2/3] object-cover rounded-lg mb-4" data-alt="Dynamic action movie poster layout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu0Kzqdm9_qo8F48Uw6KWWPtg1uTvQPtM5TmYToOweQ3cnkv3pFAFB0GwAjdUIL2Eb5Iy2KfInWeOGNwV8k8X-WAQ3PCWguhSeim18atd9NpZgvmAh4p54QKgaRTjnlt8lGmgnbLoFKTU27FxaOIUG35JGJCQKJC2wQLAkNX4yg9xqUxqSnoJ69JH68TrT04aqkbeWYGgezamYkgnepwTEfbJgCgA96zgp7ikelc8T1wdLN4WP9Mq3-kMgvbwAGxKRVDw1syTFJRU"/>
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm font-bold text-white">Midnight Run</span>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-red-600 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-red-600 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-red-600 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-red-600 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-red-600 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<p class="text-xs text-gray-500">Thriller • Drama • 1h 55min</p>
+</div>
+<div class="bg-surface-container p-4 rounded-xl border border-white/5 hover:bg-surface-container-high transition-all">
+<img class="w-full aspect-[2/3] object-cover rounded-lg mb-4" data-alt="Mysterious sci-fi movie poster atmospheric" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJydE6PI4R2sYSGJJJUqLnUdjewqpV7P3yX7tubmbMfGvu6mWMlB-DjpIrJ5QhN5GNT2bm902-6bAIiQFBqcq-zRvSMB45r1qmYN3JmH5M9z6VXHlpXUOfrlHMF5k8fHh4K1XWyCOuOZ-pstaj_nZ7k6i794mVLNTdVOtGYXVUxdlLpHH7yDtvwFck1qMl-77KzMf1XjG-UDRhazdgPb_F50iGTE079KCWLDkLN4rZnWhpLtGf1hAcIPGVVuqejbS_BKZOAGd4HzU"/>
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm font-bold text-white">Interstellar Void</span>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-red-600 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-red-600 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-red-600 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-red-600 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-gray-600 text-xs">star</span>
+</div>
+</div>
+<p class="text-xs text-gray-500">Adventure • Mystery • 2h 10min</p>
+</div>
+<div class="bg-surface-container p-4 rounded-xl border border-white/5 hover:bg-surface-container-high transition-all">
+<img class="w-full aspect-[2/3] object-cover rounded-lg mb-4" data-alt="Elegant classic movie poster style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAwysXU4aM0S4AWGeoA0xCCa729N6raOgzIA3bH7_T0ewiKj6BFkNPxaeSMXkEF6Rcil5LV2d6xkR9YELdmuTzm-Rqr1evKGCfY3BimP31bjw_rx8H31x-92r35pOrqbBa3vrwA_MRrCVQNHW4rNLT8cNVBQc9r9RwJlY7zinnLJcSxQNALSBkM0YXz3J8G1TwxYYlVv57_hN2k6XLxx-STxrdFn8IbLZotUAHzJUCZqgYOIxPKImgwSq89kjNeDlWvN-vP6GzAkI"/>
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm font-bold text-white">The Great Escape</span>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-red-600 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-red-600 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-red-600 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-red-600 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-red-600 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<p class="text-xs text-gray-500">Historical • Action • 3h 05min</p>
+</div>
+</div>
+</section>
+<!-- CTA Banner -->
+<section class="relative w-full rounded-2xl overflow-hidden mb-section-gap">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Cinematic background with abstract bokeh lights and dark textures" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAXGE03xGIGAu5UmyEHgdpwDnRKv-htmcv6vCxtia58KJd9j__0QWFjuAh8jhBiCeASWWOHIiWByJNqZMvUxtuFM5guuHN78zsEK9W6jCK6M1Q17CerzX9D-KviWL1ooXWarqOuRrkGC1er9UcIBlv0iKks6AW3cIJmWFuaFX7EaHyf15KUBViiLD4tONZEnKvX1v-WPB7RN-KAQnz3EPYN6BRXgHXmeOr1kT5N351pNYpm83aDgFlW0ZKEQBlfxJuRo8kGL4Qi4Q8')">
+<div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
+</div>
+<div class="relative z-10 px-12 py-20 flex flex-col md:flex-row items-center justify-between gap-8">
+<div>
+<h2 class="font-headline-xl text-white mb-2">Start your free trial today!</h2>
+<p class="text-gray-400 font-body-lg">Access the largest library of movies and shows in stunning 4K.</p>
+</div>
+<button class="bg-primary-container text-white px-10 py-5 rounded-lg font-bold text-lg hover:scale-105 transition-transform shadow-xl shadow-red-900/20 whitespace-nowrap">
+                    Start a Free Trial
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0F0F0F] border-t border-white/10">
+<div class="max-w-[1440px] mx-auto px-10 md:px-20 py-24 flex flex-col md:flex-row justify-between gap-12">
+<div class="max-w-xs">
+<div class="text-xl font-bold text-red-600 mb-6">CineHub</div>
+<p class="font-['Be_Vietnam_Pro'] text-sm text-gray-400 mb-8">Premium streaming experience for movie enthusiasts who value high production quality and an immersive environment.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-gray-500 cursor-pointer hover:text-white transition-colors">social_leaderboard</span>
+<span class="material-symbols-outlined text-gray-500 cursor-pointer hover:text-white transition-colors">public</span>
+<span class="material-symbols-outlined text-gray-500 cursor-pointer hover:text-white transition-colors">alternate_email</span>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-12">
+<div>
+<h4 class="text-white font-bold mb-6">Home</h4>
+<ul class="space-y-4">
+<li><a class="font-['Be_Vietnam_Pro'] text-sm text-gray-500 hover:text-white transition-colors" href="#">Categories</a></li>
+<li><a class="font-['Be_Vietnam_Pro'] text-sm text-gray-500 hover:text-white transition-colors" href="#">Devices</a></li>
+<li><a class="font-['Be_Vietnam_Pro'] text-sm text-gray-500 hover:text-white transition-colors" href="#">Pricing</a></li>
+<li><a class="font-['Be_Vietnam_Pro'] text-sm text-gray-500 hover:text-white transition-colors" href="#">FAQ</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Movies</h4>
+<ul class="space-y-4">
+<li><a class="font-['Be_Vietnam_Pro'] text-sm text-gray-500 hover:text-white transition-colors" href="#">Genres</a></li>
+<li><a class="font-['Be_Vietnam_Pro'] text-sm text-gray-500 hover:text-white transition-colors" href="#">Trending</a></li>
+<li><a class="font-['Be_Vietnam_Pro'] text-sm text-gray-500 hover:text-white transition-colors" href="#">New Release</a></li>
+<li><a class="font-['Be_Vietnam_Pro'] text-sm text-gray-500 hover:text-white transition-colors" href="#">Popular</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Shows</h4>
+<ul class="space-y-4">
+<li><a class="font-['Be_Vietnam_Pro'] text-sm text-gray-500 hover:text-white transition-colors" href="#">Genres</a></li>
+<li><a class="font-['Be_Vietnam_Pro'] text-sm text-gray-500 hover:text-white transition-colors" href="#">Trending</a></li>
+<li><a class="font-['Be_Vietnam_Pro'] text-sm text-gray-500 hover:text-white transition-colors" href="#">New Release</a></li>
+<li><a class="font-['Be_Vietnam_Pro'] text-sm text-gray-500 hover:text-white transition-colors" href="#">Popular</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Support</h4>
+<ul class="space-y-4">
+<li><a class="font-['Be_Vietnam_Pro'] text-sm text-gray-500 hover:text-white transition-colors" href="#">Contact Us</a></li>
+<li><a class="font-['Be_Vietnam_Pro'] text-sm text-gray-500 hover:text-white transition-colors" href="#">Support Center</a></li>
+<li><a class="font-['Be_Vietnam_Pro'] text-sm text-gray-500 hover:text-white transition-colors" href="#">Terms of Use</a></li>
+<li><a class="font-['Be_Vietnam_Pro'] text-sm text-gray-500 hover:text-white transition-colors" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="max-w-[1440px] mx-auto px-10 md:px-20 py-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-gray-500 text-xs">
+<p>© 2024 CineHub. All rights reserved.</p>
+<div class="flex gap-6 mt-4 md:mt-0">
+<a href="#">Terms &amp; Conditions</a>
+<a href="#">Privacy Policy</a>
+<a href="#">Cookie Policy</a>
+</div>
+</div>
+</footer>
+</body></html>

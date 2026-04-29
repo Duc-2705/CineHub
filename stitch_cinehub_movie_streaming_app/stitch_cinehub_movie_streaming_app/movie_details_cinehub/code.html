@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#131313",
+                    "on-secondary-fixed-variant": "#474746",
+                    "surface-container-highest": "#353534",
+                    "on-tertiary-container": "#f9f6f6",
+                    "primary-fixed": "#ffdad4",
+                    "error": "#ffb4ab",
+                    "outline-variant": "#5f3f3a",
+                    "inverse-on-surface": "#313030",
+                    "on-primary": "#690000",
+                    "tertiary": "#c8c6c5",
+                    "error-container": "#93000a",
+                    "surface-bright": "#3a3939",
+                    "on-background": "#e5e2e1",
+                    "on-tertiary-fixed": "#1b1c1c",
+                    "secondary-fixed": "#e5e2e1",
+                    "on-surface": "#e5e2e1",
+                    "tertiary-fixed-dim": "#c8c6c5",
+                    "inverse-primary": "#c00000",
+                    "secondary": "#c8c6c5",
+                    "tertiary-fixed": "#e4e2e1",
+                    "on-secondary-container": "#b7b5b4",
+                    "on-primary-fixed": "#410000",
+                    "background": "#131313",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "on-secondary": "#313030",
+                    "surface-tint": "#ffb4a8",
+                    "surface-variant": "#353534",
+                    "on-surface-variant": "#e9bcb5",
+                    "on-tertiary": "#303030",
+                    "surface-dim": "#131313",
+                    "surface-container-lowest": "#0e0e0e",
+                    "outline": "#b08781",
+                    "on-primary-fixed-variant": "#930100",
+                    "on-error-container": "#ffdad6",
+                    "secondary-container": "#474746",
+                    "primary": "#ffb4a8",
+                    "inverse-surface": "#e5e2e1",
+                    "primary-container": "#e50000",
+                    "surface-container-low": "#1c1b1b",
+                    "on-tertiary-fixed-variant": "#474746",
+                    "surface-container-high": "#2a2a2a",
+                    "surface-container": "#201f1f",
+                    "primary-fixed-dim": "#ffb4a8",
+                    "on-error": "#690005",
+                    "on-primary-container": "#fff6f4",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "tertiary-container": "#727171"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "120px",
+                    "container-max": "1440px",
+                    "margin-page": "80px",
+                    "gutter": "24px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "label-md": ["Manrope"],
+                    "headline-xl": ["Be Vietnam Pro"],
+                    "headline-lg": ["Be Vietnam Pro"],
+                    "body-md": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "headline-md": ["Be Vietnam Pro"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-xl": ["48px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .cinema-gradient {
+            background: linear-gradient(0deg, #0F0F0F 0%, rgba(15, 15, 15, 0.4) 50%, rgba(15, 15, 15, 0) 100%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-lg border-b border-white/10 shadow-2xl shadow-black/50">
+<nav class="flex justify-between items-center h-20 px-10 md:px-20 w-full">
+<div class="text-2xl font-black text-red-600 tracking-tight uppercase">CineHub</div>
+<div class="hidden md:flex items-center gap-8 font-['Be_Vietnam_Pro'] font-medium text-sm tracking-wide">
+<a class="text-gray-400 hover:text-white transition-colors hover:scale-105 hover:text-red-500 duration-200" href="#">Home</a>
+<a class="text-white border-b-2 border-red-600 pb-1" href="#">Movies &amp; Shows</a>
+<a class="text-gray-400 hover:text-white transition-colors hover:scale-105 hover:text-red-500 duration-200" href="#">Support</a>
+<a class="text-gray-400 hover:text-white transition-colors hover:scale-105 hover:text-red-500 duration-200" href="#">Subscriptions</a>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-on-surface cursor-pointer hover:text-red-600 transition-colors" data-icon="search">search</span>
+<span class="material-symbols-outlined text-on-surface cursor-pointer hover:text-red-600 transition-colors" data-icon="notifications">notifications</span>
+</div>
+</nav>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative h-[819px] w-full px-10 md:px-20 mt-10">
+<div class="relative w-full h-full rounded-xl overflow-hidden shadow-2xl">
+<img alt="Kantara Movie Hero" class="w-full h-full object-cover" data-alt="Cinematic still of a mystical forest ritual with glowing orange embers and dramatic high-contrast lighting in a dark atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5E3iq_2Fq3ZFN7IUZ0i1OR45ArQU2-p8gnA1wE8NQ9NsmTBeWROKxdKHA6cQyHLo44_cym1Le_Bp--r9Q1h_t3ZF3--QjYq2A91pMRor9l5-gjyhUhfDpfyA2jH1qcBYQWmTrRDpXwfV5WwUDhiEURJJuYZ8zGGrz9G0ouHWx8sseHGWtNLMK-OYCyiKUx9UFJTKwZs380EDJpk_dYhxmkLdaMSVfhpFT_VoWCpjGuY7tkVwKdkBPXTfbuhmVHmNwhJxXeWAeJAY"/>
+<div class="absolute inset-0 cinema-gradient flex flex-col justify-end items-center text-center pb-20 px-4">
+<h1 class="font-headline-xl text-white mb-4 tracking-tight">Kantara</h1>
+<p class="max-w-2xl text-gray-300 font-body-md mb-8">A story that explores the complex relationship between humanity and nature, deeply rooted in the folklore and myths of a coastal village in Karnataka.</p>
+<div class="flex gap-4">
+<button class="bg-primary-container text-white px-8 py-3 rounded-lg font-label-md flex items-center gap-2 hover:scale-105 transition-transform">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                            Play Now
+                        </button>
+<div class="flex gap-2">
+<button class="bg-surface-container-highest/60 border border-white/10 p-3 rounded-lg hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="bg-surface-container-highest/60 border border-white/10 p-3 rounded-lg hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined">thumb_up</span>
+</button>
+<button class="bg-surface-container-highest/60 border border-white/10 p-3 rounded-lg hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined">volume_up</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Content Grid -->
+<section class="max-w-[1440px] mx-auto px-10 md:px-20 py-section-gap grid grid-cols-1 lg:grid-cols-12 gap-16">
+<!-- Left Column -->
+<div class="lg:col-span-8 flex flex-col gap-12">
+<!-- Description -->
+<div class="bg-surface-container-low p-10 rounded-xl border border-white/5">
+<h2 class="text-gray-400 font-label-md mb-4">Description</h2>
+<p class="font-body-lg text-white leading-relaxed">
+                        When greed paves the way for betrayal, scheming and murder, a young tribal reluctantly dons the traditions of his ancestors to seek justice. The film explores the conflict between the forest officials and the local community, woven with the supernatural elements of Bhoota Kola.
+                    </p>
+</div>
+<!-- Cast Slider -->
+<div class="bg-surface-container-low p-10 rounded-xl border border-white/5">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-gray-400 font-label-md">Cast</h2>
+<div class="flex gap-2">
+<button class="bg-surface-container p-2 rounded-full border border-white/10 hover:border-red-600 transition-colors">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+</button>
+<button class="bg-surface-container p-2 rounded-full border border-white/10 hover:border-red-600 transition-colors">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="flex gap-4 overflow-hidden">
+<!-- Cast Member 1 -->
+<div class="flex-shrink-0 w-24">
+<img alt="Rishab Shetty" class="w-24 h-24 rounded-lg object-cover mb-2 border border-white/10" data-alt="Portrait of a South Asian actor with intense expression and dark beard, cinematic studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNmUoIhbdNWC6Hh3l3FrkOtnCmjXKEfzUj94wroCNnk1bygOUd143XGWiefyy8otn-uwrEJBw94Z62XxDShA6axCl2KQkkvwsSD_n2_Qmcmc5ro1ToDYlrrVmC0QnjpQc6hS3hoE7ahu1qdeoc-1Zp4tT7ODbk88ODa2Lk0LXLkCnRn6JRHJT-j3KAYD5--sb7YfHvuepL7O0FXwuM7OPcTMRScBXKq_H1yCwtU21XhaR7u7PzxQSRYGAYEsmUluj7T1IpJ67WFig"/>
+</div>
+<!-- Cast Member 2 -->
+<div class="flex-shrink-0 w-24">
+<img alt="Sapthami Gowda" class="w-24 h-24 rounded-lg object-cover mb-2 border border-white/10" data-alt="Portrait of a young Indian actress with traditional jewelry and soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6ym9rhk4nCPoY5f9zAhLmlWgxpJehaKdgwXC5NuwmcaHkgVgdefCI56BHyIBN_ufscBWiAxmSsDlzFEo0l0MuuQ69_fJlYvRAgumCLLQJp2-AovS-0ITedUos2E5iog4BXm2NcR_MWPcvO6hVTA9KryHSJQgpKSgb-T_Trogt-j0HoQ1esenlu2OORhmGVKPysriYz2BydQpD6HMp58IJiqYORSE3WXaR-XVSv4mDjlFF2zeizQXhXCrNrd7Fl5cCQ0Cv_huhgeU"/>
+</div>
+<!-- Cast Member 3 -->
+<div class="flex-shrink-0 w-24">
+<img alt="Kishore" class="w-24 h-24 rounded-lg object-cover mb-2 border border-white/10" data-alt="Portrait of a middle-aged South Asian man with serious professional look, dramatic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAP2igFYBxrIfley-db4smwMz-sEppcfcop8aZmKQJ1BfhyXVxVaYEeh65YHx4pmZ16Zl78g-6r84apUrKT0BfzriN8jaE9cIGB1iAMSStgZjVbEJGU_hvDlUXP7ZOa6wmZ1CLujsS98Wx7AeD5Hv-uBdT7VPz-bm68bXUQpp2fq9DXeOInGtHAnkJqtafq8_jPkgiCuznY0Z5EwUDiqh7-3tRXQ4Bgd998gdJdJnBl6j9N7TrUXpWmcjaTwi2rbG46beX-hd5EpV0"/>
+</div>
+<!-- Cast Member 4 -->
+<div class="flex-shrink-0 w-24">
+<img alt="Achyuth Kumar" class="w-24 h-24 rounded-lg object-cover mb-2 border border-white/10" data-alt="Close up portrait of a senior South Asian character actor, moody dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-Uo9T5JO35v2r6u_OdmGiI1Z1iDNs0TXhM6ofyaU8R49liyOboenhBcTJax-2Z_dQHjr8r8F6O2d_WCgb-YCIRbjiVbvvv1n6m4lyaCY3tF_Z_lR1qY0wjX0_T3dBn9W7eHSZU0kGPVlCRBR2-KwsBeY1N0mhs40CTthlJNeL-yguEfATWQfUr4GfoK_sWghwf9pcSGt4AEHgGCQ_LeuLO51V6UtnHPKKAYz5twb9_hNqdBkB0QEac8-mac-tjJxXqDzuFu3duF8"/>
+</div>
+<!-- Cast Member 5 -->
+<div class="flex-shrink-0 w-24">
+<img alt="Pramod Shetty" class="w-24 h-24 rounded-lg object-cover mb-2 border border-white/10" data-alt="Portrait of a male actor in cinematic low key lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiGL47i2PaG7Nc6nnwSm_TsIhUKJ42Jmj_kjgGX_QAFRPW0fe5_bsgiK2VZ5oqqiRssmZ5iccsfO9OI-6gwrAFxz_3IYfaA4ofB2gjRT3OyuWJgv5AKlokFZIRUZ6VRtaKdRGbKYv2IhsqCKBeKMuS1oXYmvJBMgeLJEN0hBAoiYT0-SUm3uKXUr3y5XTeYdl82xxqBMHM9oCqWebUawMDIGUvlzNMbuBURkvSr-aUYZTTuvlKX9llNdpKOjJlYGckqAKWYtlZvzs"/>
+</div>
+</div>
+</div>
+<!-- Reviews Section -->
+<div class="bg-surface-container-low p-10 rounded-xl border border-white/5">
+<div class="flex justify-between items-center mb-8">
+<h2 class="text-gray-400 font-label-md">Reviews</h2>
+<button class="bg-surface-container-highest px-4 py-2 rounded-lg text-sm border border-white/10 flex items-center gap-2 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-sm">add</span> Add Your Review
+                        </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-surface p-6 rounded-lg border border-white/5">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-headline-md text-sm text-white">Anirudh Kumar</h4>
+<p class="text-xs text-gray-500">From India</p>
+</div>
+<div class="bg-surface-container-high px-2 py-1 rounded flex items-center gap-1 border border-white/10">
+<span class="material-symbols-outlined text-xs text-red-600" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs text-white">4.5</span>
+</div>
+</div>
+<p class="text-gray-400 text-sm leading-relaxed">Kantara is a masterpiece of storytelling. The fusion of tradition and thrill is perfectly executed. The climax is absolutely legendary!</p>
+</div>
+<div class="bg-surface p-6 rounded-lg border border-white/5">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-headline-md text-sm text-white">Sarah Jenkins</h4>
+<p class="text-xs text-gray-500">From UK</p>
+</div>
+<div class="bg-surface-container-high px-2 py-1 rounded flex items-center gap-1 border border-white/10">
+<span class="material-symbols-outlined text-xs text-red-600" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs text-white">5.0</span>
+</div>
+</div>
+<p class="text-gray-400 text-sm leading-relaxed">Visually stunning and emotionally gripping. Even without knowing the culture, the performances and direction are universal.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<div class="bg-surface-container-low p-10 rounded-xl border border-white/5 flex flex-col gap-8">
+<!-- Metadata Rows -->
+<div>
+<h3 class="text-gray-500 font-label-md mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">calendar_today</span> Released Year
+                        </h3>
+<p class="text-white font-headline-md text-lg">2022</p>
+</div>
+<div>
+<h3 class="text-gray-500 font-label-md mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">language</span> Available Languages
+                        </h3>
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-container px-3 py-1 rounded-md text-sm border border-white/5">Kannada</span>
+<span class="bg-surface-container px-3 py-1 rounded-md text-sm border border-white/5">Hindi</span>
+<span class="bg-surface-container px-3 py-1 rounded-md text-sm border border-white/5">Telugu</span>
+</div>
+</div>
+<div>
+<h3 class="text-gray-500 font-label-md mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">star</span> Ratings
+                        </h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface p-3 rounded-lg border border-white/10">
+<p class="text-xs text-gray-500 mb-1">IMDb</p>
+<div class="flex items-center gap-1 text-red-600">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-white font-bold">8.3</span>
+</div>
+</div>
+<div class="bg-surface p-3 rounded-lg border border-white/10">
+<p class="text-xs text-gray-500 mb-1">StreamVibe</p>
+<div class="flex items-center gap-1 text-red-600">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-white font-bold">4.8</span>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-gray-500 font-label-md mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">movie</span> Genres
+                        </h3>
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-container px-3 py-1 rounded-md text-sm border border-white/5">Action</span>
+<span class="bg-surface-container px-3 py-1 rounded-md text-sm border border-white/5">Thriller</span>
+</div>
+</div>
+<div>
+<h3 class="text-gray-500 font-label-md mb-2">Director</h3>
+<div class="flex items-center gap-3 bg-surface p-3 rounded-lg border border-white/5">
+<img alt="Director" class="w-12 h-12 rounded-lg object-cover" data-alt="Close up portrait of a South Asian man in professional filmmaker attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOZQxQI3jR1eOby1U7FVGoSanhCPsyEedid-0ffL94fSOk9TsdNlgEkzi_Z4WkJyCJ3vKZvWuSu-fbguT8wGCtV3cPLdyP7Mn_XL7-kGYNO0hDuhX0BT8vslIsthYIPEcvRguEuHdDIKFWA7VY9gtCR6CdLhIiUubG53cs0McoXqDiDi1m67tk0Hw1cFv_pXDdK0pyo7WSaUNFMxcu_E2f74DQ-yD2JgIO7690lL4f1qQqjrpHLIK-APibaRhbb_zegUq0UtJduYA"/>
+<div>
+<p class="text-white text-sm font-bold">Rishab Shetty</p>
+<p class="text-xs text-gray-500">Karnataka, India</p>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-gray-500 font-label-md mb-2">Music</h3>
+<div class="flex items-center gap-3 bg-surface p-3 rounded-lg border border-white/5">
+<img alt="Composer" class="w-12 h-12 rounded-lg object-cover" data-alt="Portrait of a musician in a recording studio setting with soft warm light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7obQ6wnvYlx-FSx4_9eTdqyLVl3QpthOfeRPk2V22FQ1M5NOq1uHtcpd0QykjHqcubR0TjUM5FlKPMZo7aOgYs7-8ZoyOfdw3aRGW9LCTDmNVndlBVXahwYuqOzB6kgOcuNdg1ZKeRbwBn9a9RWUtjeBys1pM80c-L-V-mv7kOabMklOyDVOgzDADcn16XTppmtxtM4Rj0fKTJIP6LS9Rg86DGvgeNmROt0kjQxnn4L0LpGQW9vjj8uHuKVafj3Aq2l8gehMK7ks"/>
+<div>
+<p class="text-white text-sm font-bold">B. Ajaneesh Loknath</p>
+<p class="text-xs text-gray-500">Music Director</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Banner -->
+<section class="max-w-[1440px] mx-auto px-10 md:px-20 mb-section-gap">
+<div class="relative w-full p-16 rounded-3xl overflow-hidden text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-8 border border-white/10" data-alt="Cinematic abstract dark background with light leaks and film grain texture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCCRWYcxXgoCSWwxL-i04vL6ENRgwn8dYjdkrv6ORzcanoGRpDfuAJkirP1bKtuPpYrQfHjiq60wGWyuvsDdNthHRboO66iuriNt8g_bn3vSRMOGNzj5Ympq0VlGtp7qFqPLNElL6TEBfDYDZ6--rg3tWTlRpIt5bGoktOR5YxFI2Fu0TSfqGaNwR1ibL_ov7Adjpr7yr0vrZNJS1irttZIbMzXmIFF0zXs4rHB7lQTLV6geJ0IB0LbouQslEusEmyvv1kDsuGR8H0'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-black/80"></div>
+<div class="relative z-10 max-w-2xl">
+<h2 class="font-headline-xl text-white mb-4">Start your free trial today!</h2>
+<p class="text-gray-400 font-body-lg">This is a clear and concise call to action that encourages users to sign up for a free trial of CineHub.</p>
+</div>
+<div class="relative z-10">
+<button class="bg-primary-container text-white px-10 py-4 rounded-lg font-label-md hover:scale-105 transition-transform shadow-xl shadow-red-900/20">
+                        Start a Free Trial
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0F0F0F] border-t border-white/10">
+<div class="max-w-[1440px] mx-auto px-10 md:px-20 py-24 flex flex-col md:flex-row justify-between gap-12">
+<div class="flex flex-col gap-6 max-w-xs">
+<div class="text-xl font-bold text-red-600">CineHub</div>
+<p class="text-sm text-gray-400 leading-relaxed">CineHub is the premier streaming platform for global cinema enthusiasts, offering an immersive viewing experience with the highest quality content.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-12">
+<div class="flex flex-col gap-4">
+<h4 class="text-white font-bold">Categories</h4>
+<ul class="flex flex-col gap-2 text-sm text-gray-500">
+<li class="hover:text-white transition-colors cursor-pointer">Movies</li>
+<li class="hover:text-white transition-colors cursor-pointer">Shows</li>
+</ul>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-white font-bold">Support</h4>
+<ul class="flex flex-col gap-2 text-sm text-gray-500">
+<li class="hover:text-white transition-colors cursor-pointer">Help Center</li>
+<li class="hover:text-white transition-colors cursor-pointer">Contact Us</li>
+</ul>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-white font-bold">Subscription</h4>
+<ul class="flex flex-col gap-2 text-sm text-gray-500">
+<li class="hover:text-white transition-colors cursor-pointer">Plans</li>
+<li class="hover:text-white transition-colors cursor-pointer">Features</li>
+</ul>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-white font-bold">Social</h4>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-gray-500 hover:text-red-600 cursor-pointer">public</span>
+<span class="material-symbols-outlined text-gray-500 hover:text-red-600 cursor-pointer">rss_feed</span>
+<span class="material-symbols-outlined text-gray-500 hover:text-red-600 cursor-pointer">chat</span>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-[1440px] mx-auto px-10 md:px-20 py-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-sm text-gray-500">© 2024 CineHub. All rights reserved.</p>
+<div class="flex gap-6 text-sm text-gray-500">
+<span class="hover:text-white cursor-pointer transition-colors">Privacy Policy</span>
+<span class="hover:text-white cursor-pointer transition-colors">Terms of Service</span>
+</div>
+</div>
+</footer>
+</body></html>

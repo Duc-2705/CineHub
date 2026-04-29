@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "surface": "#131313",
+                  "on-secondary-fixed-variant": "#474746",
+                  "surface-container-highest": "#353534",
+                  "on-tertiary-container": "#f9f6f6",
+                  "primary-fixed": "#ffdad4",
+                  "error": "#ffb4ab",
+                  "outline-variant": "#5f3f3a",
+                  "inverse-on-surface": "#313030",
+                  "on-primary": "#690000",
+                  "tertiary": "#c8c6c5",
+                  "error-container": "#93000a",
+                  "surface-bright": "#3a3939",
+                  "on-background": "#e5e2e1",
+                  "on-tertiary-fixed": "#1b1c1c",
+                  "secondary-fixed": "#e5e2e1",
+                  "on-surface": "#e5e2e1",
+                  "tertiary-fixed-dim": "#c8c6c5",
+                  "inverse-primary": "#c00000",
+                  "secondary": "#c8c6c5",
+                  "tertiary-fixed": "#e4e2e1",
+                  "on-secondary-container": "#b7b5b4",
+                  "on-primary-fixed": "#410000",
+                  "background": "#131313",
+                  "secondary-fixed-dim": "#c8c6c5",
+                  "on-secondary": "#313030",
+                  "surface-tint": "#ffb4a8",
+                  "surface-variant": "#353534",
+                  "on-surface-variant": "#e9bcb5",
+                  "on-tertiary": "#303030",
+                  "surface-dim": "#131313",
+                  "surface-container-lowest": "#0e0e0e",
+                  "outline": "#b08781",
+                  "on-primary-fixed-variant": "#930100",
+                  "on-error-container": "#ffdad6",
+                  "secondary-container": "#474746",
+                  "primary": "#ffb4a8",
+                  "inverse-surface": "#e5e2e1",
+                  "primary-container": "#e50000",
+                  "surface-container-low": "#1c1b1b",
+                  "on-tertiary-fixed-variant": "#474746",
+                  "surface-container-high": "#2a2a2a",
+                  "surface-container": "#201f1f",
+                  "primary-fixed-dim": "#ffb4a8",
+                  "on-error": "#690005",
+                  "on-primary-container": "#fff6f4",
+                  "on-secondary-fixed": "#1c1b1b",
+                  "tertiary-container": "#727171"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.25rem",
+                  "lg": "0.5rem",
+                  "xl": "0.75rem",
+                  "full": "9999px"
+          },
+          "spacing": {
+                  "section-gap": "120px",
+                  "container-max": "1440px",
+                  "margin-page": "80px",
+                  "gutter": "24px",
+                  "unit": "8px"
+          },
+          "fontFamily": {
+                  "label-md": ["Manrope"],
+                  "headline-xl": ["Be Vietnam Pro"],
+                  "headline-lg": ["Be Vietnam Pro"],
+                  "body-md": ["Manrope"],
+                  "body-lg": ["Manrope"],
+                  "headline-md": ["Be Vietnam Pro"]
+          },
+          "fontSize": {
+                  "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                  "headline-xl": ["48px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                  "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                  "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                  "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                  "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .cinema-gradient-overlay {
+      background: linear-gradient(0deg, rgba(15,15,15,1) 0%, rgba(15,15,15,0.4) 50%, rgba(15,15,15,0) 100%);
+    }
+    body {
+      background-color: #0F0F0F;
+      color: #E5E2E1;
+    }
+  </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-lg border-b border-white/10 shadow-2xl shadow-black/50">
+<div class="flex justify-between items-center h-20 px-10 md:px-20 max-w-[1440px] mx-auto w-full">
+<div class="text-2xl font-black text-red-600 tracking-tight uppercase">CineHub</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="font-['Be_Vietnam_Pro'] font-medium text-sm tracking-wide text-gray-400 hover:text-white transition-colors hover:scale-105 hover:text-red-500 duration-200" href="#">Home</a>
+<a class="font-['Be_Vietnam_Pro'] font-medium text-sm tracking-wide text-gray-400 hover:text-white transition-colors hover:scale-105 hover:text-red-500 duration-200" href="#">Movies &amp; Shows</a>
+<a class="font-['Be_Vietnam_Pro'] font-medium text-sm tracking-wide text-white border-b-2 border-red-600 pb-1 hover:scale-105 transition-all duration-200" href="#">Support</a>
+<a class="font-['Be_Vietnam_Pro'] font-medium text-sm tracking-wide text-gray-400 hover:text-white transition-colors hover:scale-105 hover:text-red-500 duration-200" href="#">Subscriptions</a>
+</nav>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-white hover:text-red-600 transition-colors" data-icon="search">search</button>
+<button class="material-symbols-outlined text-white hover:text-red-600 transition-colors" data-icon="notifications">notifications</button>
+</div>
+</div>
+</header>
+<main class="pt-32 px-10 md:px-20 max-w-[1440px] mx-auto">
+<!-- Hero & Support Section -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start mb-[120px]">
+<!-- Left Content: Welcome & Posters -->
+<div class="lg:col-span-5 space-y-10">
+<div class="space-y-4">
+<h1 class="font-headline-xl text-headline-xl">Welcome to our support page!</h1>
+<p class="text-gray-400 font-body-lg text-body-lg">We're here to help you with any problems you may be having with our service. Whether you're having trouble logging in, finding a movie, or anything else, our team is ready to assist you.</p>
+</div>
+<!-- Posters Grid Decor -->
+<div class="grid grid-cols-3 gap-3 rounded-xl overflow-hidden border border-white/5 p-4 bg-surface-container-low">
+<div class="aspect-[2/3] rounded-lg bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover opacity-80" data-alt="Dark dramatic movie poster featuring a futuristic sci-fi cityscape with neon lighting and high contrast" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA68mKV2R1nsNOVLBpDTDCPHF8OsxaM0vrzy_T7qrdPQ1IXYB7QWPTBr1_z0Ds9mbDUDG1PkRdGJOQnkJUx3EjMiV265OOBkErHQ4LQvS3ogbZrBRaY7IPYBY454Y6920fTMthvc5R_bOJdgpDGpuXnCsCMFgt1pV7fyeo9rc92CNIQx0hMcHIZPv3udKjzoUsGsTODDbLPeEn_5VSu7pX-ITLp1St_0Laor1jgrpKYdRKEqXwnOwGEOdd8sLTAXL2lNCem1gnx3k0"/>
+</div>
+<div class="aspect-[2/3] rounded-lg bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover opacity-80" data-alt="Action movie poster aesthetic showing a high-speed car chase in a gritty urban environment with motion blur" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQuqK0lmWLUDfMgRtgF0-WnJ6xGCEJz8bZtgX3sKIuBbpX9hdmJwyQOuoMXq4l3XoNWXCWZL7fvYjyOFBsVzNyCYEPCjezT_Omph80E3ixrgakEj2439n38g3XcPDi6gVRTGsXBN5QpUxIUO6-4qw8svelvkUAIVeRn5XgyRGa-idwEixIaa26SLlplGhMuercr-aOkOJufczUGc7Jt8mTb4sHqL7z1EjHOvx38d9ehFQvtEEy5DwLxs5MMvqKgDavRdbvtiq_EUM"/>
+</div>
+<div class="aspect-[2/3] rounded-lg bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover opacity-80" data-alt="Classic cinema poster style showing a silhouette of a person standing under a single spotlight in a dark room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_lAwhbXmrlPraN9BO6tHoRfoQGdPzJeOccyu5XdfZe_FcEec1olJHnM8JlWx6aSafSQQWX5kt75qE3EXk6UJvqPxZgiUYR4J_O80GufxFH747rOKPEDdCC9lCjMsPNSimRylt6kPsv7P_e7E0T2LWYid976cDoxxDC1kZ678UpHrJDDiycydF5jSlt4NM8-1qWi_RObp5O4Iufbk1yt28t43nlRNvn1X9fzV6N55FI0A92UW06FXQ3snJr9-uE-zZNDUUSz42V8w"/>
+</div>
+<div class="aspect-[2/3] rounded-lg bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover opacity-80" data-alt="Atmospheric movie still of a mysterious forest at night with deep blue shadows and a silver moon glow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtkVmmKrE_GG1py3DDzFle8N8UX3R_Ex3m91F8Pdd41qne7bIjcu3aLPUyizCcqyEG3Q9k_Dh3H9-3rQ0TNdKhhzqkIMTfYIY07jJh8HQNFbRQSrKEyHbkZ4VJ0Y1ZsGh4IIAqXJ8IqcLttg7JikC65CVYB7quWvHOTYVTHBlfEQ8WwvDucooc2fS1BOPGDMCYeFvtTeo_vKlNgYLARBmqyL8VXR0G8a62DEOhqA8LDFJ-mSKlIirPpOO3GodxyhYQH2MAlg41tgo"/>
+</div>
+<div class="aspect-[2/3] rounded-lg bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover opacity-80" data-alt="Abstract cinematic visual with vibrant red and blue light leaks over a dark textured background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgZrtdBS3scHbsmyXLosgvi1shdyaa9dnGLoguUDLfRYTy5SZTAfYp6moaEPhYlVyN8Fa1V7LX71LOAuuYLbmoWhaGmb0Npep8WKUOXeAgtmQC7mhLuKXz9Uk-w2oVREseX7E96GSub80OvwG7fc3JWwB1dhWgKzBK8X3kBRg16LtOQuZrQ4Ji-z-JN0Sd6rb2tI4zekcJScp36uwapsoZIxldoXRrh1DsVG2uD74BVEgTvoEFGhjb_dcisJjKVUDyL3Z-awcUveA"/>
+</div>
+<div class="aspect-[2/3] rounded-lg bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover opacity-80" data-alt="Intense close-up of a character's eyes reflecting a flickering firelight in a dark setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFcYzK8FwC-moKpS3ybmm2YWY_8SgBqbOGv5uGl9FtotNVRTQfpaOO_-pgFeW06IiKoGf8aVmqRE5emAg0sRzgQA2W2NJrniQbDEHmW-QgxK_nMcmqya-mflyXiTEuN1i2o8rcXDeM_fN1Z7uAuTUgQV3pdDICgvfDGK8If5FSzDjjkYtbhq9nR8CcR1Btt7R78scEPPfH_L9ke-yEZgQq5AgyWNggK4DNh0uDQ4Q9hryXkaW_QAf109xQnDRvrKOeQzmfEwrrqTU"/>
+</div>
+</div>
+</div>
+<!-- Right Content: Contact Form -->
+<div class="lg:col-span-7 bg-[#1A1A1A] rounded-xl p-10 border border-white/10 shadow-2xl">
+<form class="space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-white">First Name</label>
+<input class="bg-[#131313] border border-white/10 rounded-lg py-4 px-6 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-gray-600" placeholder="Enter First Name" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-white">Last Name</label>
+<input class="bg-[#131313] border border-white/10 rounded-lg py-4 px-6 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-gray-600" placeholder="Enter Last Name" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-white">Email</label>
+<input class="bg-[#131313] border border-white/10 rounded-lg py-4 px-6 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-gray-600" placeholder="Enter your Email" type="email"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-white">Phone Number</label>
+<div class="flex gap-2">
+<select class="bg-[#131313] border border-white/10 rounded-lg py-4 px-3 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none text-gray-400">
+<option>🇺🇸 +1</option>
+<option>🇬🇧 +44</option>
+<option>🇮🇳 +91</option>
+</select>
+<input class="flex-1 bg-[#131313] border border-white/10 rounded-lg py-4 px-6 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-gray-600" placeholder="Enter Phone Number" type="tel"/>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-white">Message</label>
+<textarea class="bg-[#131313] border border-white/10 rounded-lg py-4 px-6 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-gray-600 resize-none" placeholder="Enter your Message" rows="4"></textarea>
+</div>
+<div class="flex items-center justify-between pt-4">
+<div class="flex items-center gap-3 text-gray-400 text-sm">
+<input class="rounded bg-[#131313] border-white/10 text-red-600 focus:ring-red-600" type="checkbox"/>
+<span>I agree with Terms of Use and Privacy Policy</span>
+</div>
+<button class="bg-primary-container text-on-primary-container px-10 py-4 rounded-lg font-bold hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-red-600/20" type="button">Send Message</button>
+</div>
+</form>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="mb-[120px]">
+<div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
+<div class="max-w-2xl space-y-4">
+<h2 class="font-headline-lg text-headline-lg">Frequently Asked Questions</h2>
+<p class="text-gray-400 font-body-md text-body-md">Got questions? We've got answers! Check out our FAQ section to find answers to the most common questions about CineHub.</p>
+</div>
+<button class="bg-primary-container text-on-primary-container px-8 py-4 rounded-lg font-bold hover:brightness-110 transition-all">Ask a Question</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12 border-t border-white/10 pt-12">
+<!-- FAQ Item 1 -->
+<div class="flex gap-6 items-start">
+<div class="bg-surface-container-high w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 text-white font-bold text-xl border border-white/5">01</div>
+<div class="space-y-3">
+<h3 class="font-headline-md text-headline-md text-white">What is CineHub?</h3>
+<p class="text-gray-400 font-body-md text-body-md leading-relaxed">CineHub is a streaming service that allows you to watch movies and shows on your favorite devices. We offer a wide range of content from around the world.</p>
+</div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="flex gap-6 items-start">
+<div class="bg-surface-container-high w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 text-white font-bold text-xl border border-white/5">02</div>
+<div class="space-y-3">
+<h3 class="font-headline-md text-headline-md text-white">How much does CineHub cost?</h3>
+<p class="text-gray-400 font-body-md text-body-md leading-relaxed">We have multiple subscription plans starting as low as $9.99/month. You can choose the one that fits your viewing needs and budget best.</p>
+</div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="flex gap-6 items-start">
+<div class="bg-surface-container-high w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 text-white font-bold text-xl border border-white/5">03</div>
+<div class="space-y-3">
+<h3 class="font-headline-md text-headline-md text-white">What devices can I use to watch?</h3>
+<p class="text-gray-400 font-body-md text-body-md leading-relaxed">CineHub is available on web browsers, iOS and Android devices, Smart TVs, and popular streaming sticks like Roku and Fire TV.</p>
+</div>
+</div>
+<!-- FAQ Item 4 -->
+<div class="flex gap-6 items-start">
+<div class="bg-surface-container-high w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 text-white font-bold text-xl border border-white/5">04</div>
+<div class="space-y-3">
+<h3 class="font-headline-md text-headline-md text-white">How do I cancel my subscription?</h3>
+<p class="text-gray-400 font-body-md text-body-md leading-relaxed">You can cancel your subscription at any time through your account settings. There are no cancellation fees or long-term commitments.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Trial Banner -->
+<section class="mb-[120px] relative overflow-hidden rounded-2xl bg-[#0F0F0F] border border-white/10 p-12 md:p-20 group">
+<div class="absolute inset-0 z-0 opacity-20 group-hover:opacity-30 transition-opacity">
+<img class="w-full h-full object-cover" data-alt="Wide shot of a dark empty movie theater with red velvet seats and ambient light from a screen off-camera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBM4tPLNwaoAMit49dhpeQe3HSNVe6MeJpgaG54f6RJ4qG2XG6-V-PIy9uJ-L4whN2GrYryjgNNeNSSelZRTjiSfOADDQ2uJvDAagmapx1CS5WB0RLa7XtCZYanUzNopugK55lsg6gi2I0buJn7jok3N8WT6OII87GXF8V2ni7jGpPVykkgFEkp_hjig01KNsn7whlitp6wEj2mekDeOLRjp4ScpnpVwMxD649vrywfNti2zb_tj_22vYRCw2PI9EdZ4utQYhwP50"/>
+</div>
+<div class="relative z-10 flex flex-col md:flex-row justify-between items-center gap-10">
+<div class="space-y-4 text-center md:text-left">
+<h2 class="font-headline-xl text-headline-xl">Start your free trial today!</h2>
+<p class="text-gray-400 font-body-lg text-body-lg max-w-xl">Join over 10 million movie buffs who already enjoy the CineHub experience. No hidden fees, no contracts, just entertainment.</p>
+</div>
+<button class="bg-primary-container text-on-primary-container px-12 py-5 rounded-lg font-bold text-lg hover:scale-105 transition-all shadow-2xl shadow-red-600/30 whitespace-nowrap">Start a Free Trial</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0F0F0F] border-t border-white/10">
+<div class="max-w-[1440px] mx-auto px-10 md:px-20 py-24 flex flex-col md:flex-row justify-between gap-12">
+<div class="space-y-6 max-w-sm">
+<div class="text-xl font-bold text-red-600">CineHub</div>
+<p class="font-['Be_Vietnam_Pro'] text-sm text-gray-400">Your ultimate destination for cinematic storytelling. Experience the best movies and shows with industry-leading quality.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-12 flex-1 md:ml-20">
+<div class="space-y-4">
+<h4 class="text-white font-bold">Categories</h4>
+<ul class="space-y-2">
+<li><a class="font-['Be_Vietnam_Pro'] text-sm text-gray-500 hover:text-white transition-colors" href="#">Movies</a></li>
+<li><a class="font-['Be_Vietnam_Pro'] text-sm text-gray-500 hover:text-white transition-colors" href="#">Shows</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="text-white font-bold">Support</h4>
+<ul class="space-y-2">
+<li><a class="font-['Be_Vietnam_Pro'] text-sm text-gray-500 hover:text-white transition-colors" href="#">Help Center</a></li>
+<li><a class="font-['Be_Vietnam_Pro'] text-sm text-gray-500 hover:text-white transition-colors" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="text-white font-bold">Subscription</h4>
+<ul class="space-y-2">
+<li><a class="font-['Be_Vietnam_Pro'] text-sm text-gray-500 hover:text-white transition-colors" href="#">Plans</a></li>
+<li><a class="font-['Be_Vietnam_Pro'] text-sm text-gray-500 hover:text-white transition-colors" href="#">Features</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="text-white font-bold">Connect</h4>
+<div class="flex gap-4">
+<a class="text-gray-500 hover:text-red-600 transition-colors" href="#">Facebook</a>
+<a class="text-gray-500 hover:text-red-600 transition-colors" href="#">Twitter</a>
+<a class="text-gray-500 hover:text-red-600 transition-colors" href="#">LinkedIn</a>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-[1440px] mx-auto px-10 md:px-20 py-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="font-['Be_Vietnam_Pro'] text-sm text-gray-400">© 2024 CineHub. All rights reserved.</div>
+<div class="flex gap-8">
+<a class="text-xs text-gray-500 hover:text-white transition-colors" href="#">Terms of Service</a>
+<a class="text-xs text-gray-500 hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="text-xs text-gray-500 hover:text-white transition-colors" href="#">Cookie Policy</a>
+</div>
+</div>
+</footer>
+</body></html>
