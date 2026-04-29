@@ -143,7 +143,7 @@ export default function HomePage() {
           <div className="max-w-xl">
             <h2 className="font-headline-lg text-white mb-4">Frequently Asked Questions</h2>
             <p className="font-body-md text-gray-400">Got questions? We've got answers!</p>
-            <button className="mt-8 bg-primary-container text-white px-6 py-3 rounded-lg font-bold hover:scale-105 transition-all">Ask a Question</button>
+            <button onClick={() => { window.scrollTo(0, 0); navigate('/support'); }} className="mt-8 bg-primary-container text-white px-6 py-3 rounded-lg font-bold hover:scale-105 transition-all">Ask a Question</button>
           </div>
           <div className="flex-1 space-y-4">
             {FAQS.map((f, i) => <FAQItem key={i} number={i + 1} question={f.q} answer={f.a} />)}

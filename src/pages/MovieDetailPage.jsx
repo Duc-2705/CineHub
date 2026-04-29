@@ -4,12 +4,13 @@ import movies from '../data/movies.json'
 import { useMyList } from '../hooks/useMyList'
 import StarRating from '../components/StarRating'
 import CTABanner from '../components/CTABanner'
+import TrailerModal from '../components/TrailerModal'
 
 export default function MovieDetailPage() {
   const { id } = useParams()
   const navigate = useNavigate()
   const { isInList, toggleList } = useMyList()
-  const [toast, setToast] = useState(false)
+  const [trailerOpen, setTrailerOpen] = useState(false)
 
   const movie = movies.find((m) => m.id === id)
 
@@ -23,17 +24,16 @@ export default function MovieDetailPage() {
   const inList = isInList(movie.id)
 
   const handlePlay = () => {
-    setToast(true)
-    setTimeout(() => setToast(false), 3000)
+    setTrailerOpen(true)
   }
 
   return (
     <div className="bg-background font-body-md text-on-surface">
-      {toast && (
-        <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-surface-container border border-white/10 text-white px-6 py-3 rounded-xl shadow-2xl text-sm font-bold">
-          🎬 Trailer coming soon!
-        </div>
-      )}
+      <TrailerModal 
+        isOpen={trailerOpen} 
+        onClose={() => setTrailerOpen(false)} 
+        trailerUrl={movie.trailerUrl} 
+      />
 
       {/* Hero */}
       <section className="relative pt-20 w-full px-10 md:px-20 mt-6">
@@ -55,7 +55,7 @@ export default function MovieDetailPage() {
                   {inList ? 'bookmark' : 'bookmark_add'}
                 </span>
               </button>
-              <button className="bg-surface-container-highest/60 border border-white/10 p-3 rounded-lg hover:bg-surface-container-highest transition-colors">
+              <button onClick={() => alert('Liked!')} className="bg-surface-container-highest/60 border border-white/10 p-3 rounded-lg hover:bg-surface-container-highest transition-colors">
                 <span className="material-symbols-outlined">thumb_up</span>
               </button>
             </div>
@@ -90,7 +90,7 @@ export default function MovieDetailPage() {
           <div className="bg-surface-container-low p-10 rounded-xl border border-white/5">
             <div className="flex justify-between items-center mb-8">
               <h2 className="text-gray-400 font-label-md">Reviews</h2>
-              <button className="bg-surface-container-highest px-4 py-2 rounded-lg text-sm border border-white/10 flex items-center gap-2 hover:bg-surface-container transition-colors">
+              <button onClick={() => alert('Review feature coming soon!')} className="bg-surface-container-highest px-4 py-2 rounded-lg text-sm border border-white/10 flex items-center gap-2 hover:bg-surface-container transition-colors">
                 <span className="material-symbols-outlined text-sm">add</span> Add Your Review
               </button>
             </div>

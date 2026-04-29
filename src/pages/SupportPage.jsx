@@ -16,7 +16,10 @@ const FAQS = [
   { q: 'How do I cancel my subscription?', a: 'You can cancel your subscription at any time through your account settings. There are no cancellation fees or long-term commitments.' },
 ]
 
+import { useNavigate } from 'react-router-dom'
+
 export default function SupportPage() {
+  const navigate = useNavigate()
   const [toast, setToast] = useState(false)
 
   const handleSubmit = (e) => {
@@ -104,7 +107,7 @@ export default function SupportPage() {
             <h2 className="font-headline-lg text-white">Frequently Asked Questions</h2>
             <p className="text-gray-400 font-body-md">Got questions? We've got answers! Check out our FAQ section to find answers to the most common questions about CineHub.</p>
           </div>
-          <button className="bg-primary-container text-white px-8 py-4 rounded-lg font-bold hover:brightness-110 transition-all">Ask a Question</button>
+          <button onClick={() => window.scrollTo(0, 0)} className="bg-primary-container text-white px-8 py-4 rounded-lg font-bold hover:brightness-110 transition-all">Ask a Question</button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12 border-t border-white/10 pt-12">
           {FAQS.map((f, i) => (
@@ -131,7 +134,7 @@ export default function SupportPage() {
             <h2 className="font-headline-xl text-white">Start your free trial today!</h2>
             <p className="text-gray-400 font-body-lg max-w-xl">Join over 10 million movie buffs who already enjoy the CineHub experience. No hidden fees, no contracts, just entertainment.</p>
           </div>
-          <button className="bg-primary-container text-white px-12 py-5 rounded-lg font-bold text-lg hover:scale-105 transition-all shadow-2xl shadow-red-600/30 whitespace-nowrap">Start a Free Trial</button>
+          <button onClick={() => { window.scrollTo(0, 0); navigate('/subscriptions'); }} className="bg-primary-container text-white px-12 py-5 rounded-lg font-bold text-lg hover:scale-105 transition-all shadow-2xl shadow-red-600/30 whitespace-nowrap">Start a Free Trial</button>
         </div>
       </section>
     </div>

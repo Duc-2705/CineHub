@@ -1,21 +1,18 @@
-[
+const fs = require('fs');
+
+const movies = [
   {
     "id": "avengers-endgame",
     "title": "Avengers: Endgame",
     "year": 2019,
-    "genres": [
-      "Action",
-      "Sci-Fi"
-    ],
+    "genres": ["Action", "Sci-Fi"],
     "rating": 8.4,
     "duration": "3h 1min",
     "description": "After the devastating events of Infinity War, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
     "posterUrl": "https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg",
     "backdropUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Avengers_Endgame_Cast_at_SDCC_2019_%28cropped%29.jpg",
     "trailerUrl": "https://www.youtube.com/embed/TcMBFSGVi1c",
-    "languages": [
-      "English"
-    ],
+    "languages": ["English"],
     "isNew": false,
     "isTrending": true,
     "topRank": 1,
@@ -39,37 +36,22 @@
       }
     ],
     "reviews": [
-      {
-        "author": "Mike Chen",
-        "from": "USA",
-        "rating": 5,
-        "text": "The perfect conclusion to a decade of storytelling."
-      },
-      {
-        "author": "Emma Watson",
-        "from": "UK",
-        "rating": 4.5,
-        "text": "Epic in every sense of the word."
-      }
+      { "author": "Mike Chen", "from": "USA", "rating": 5.0, "text": "The perfect conclusion to a decade of storytelling." },
+      { "author": "Emma Watson", "from": "UK", "rating": 4.5, "text": "Epic in every sense of the word." }
     ]
   },
   {
     "id": "interstellar",
     "title": "Interstellar",
     "year": 2014,
-    "genres": [
-      "Adventure",
-      "Sci-Fi"
-    ],
+    "genres": ["Adventure", "Sci-Fi"],
     "rating": 8.6,
     "duration": "2h 49min",
     "description": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
     "posterUrl": "https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg",
     "backdropUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Interstellar_water_world.jpg",
     "trailerUrl": "https://www.youtube.com/embed/zSWdZVtXT7E",
-    "languages": [
-      "English"
-    ],
+    "languages": ["English"],
     "isNew": false,
     "isTrending": true,
     "topRank": 2,
@@ -93,31 +75,21 @@
       }
     ],
     "reviews": [
-      {
-        "author": "David Smith",
-        "from": "Canada",
-        "rating": 5,
-        "text": "A breathtaking visual and emotional journey."
-      }
+      { "author": "David Smith", "from": "Canada", "rating": 5.0, "text": "A breathtaking visual and emotional journey." }
     ]
   },
   {
     "id": "dark-knight",
     "title": "The Dark Knight",
     "year": 2008,
-    "genres": [
-      "Action",
-      "Thriller"
-    ],
-    "rating": 9,
+    "genres": ["Action", "Thriller"],
+    "rating": 9.0,
     "duration": "2h 32min",
     "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
     "posterUrl": "https://upload.wikimedia.org/wikipedia/en/1/1c/The_Dark_Knight_%282008_film%29.jpg",
     "backdropUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e8/The_Dark_Knight_set.jpg",
     "trailerUrl": "https://www.youtube.com/embed/EXeTwQWrcwY",
-    "languages": [
-      "English"
-    ],
+    "languages": ["English"],
     "isNew": false,
     "isTrending": true,
     "topRank": 3,
@@ -141,32 +113,21 @@
       }
     ],
     "reviews": [
-      {
-        "author": "Sarah Connor",
-        "from": "USA",
-        "rating": 5,
-        "text": "Heath Ledger's Joker is legendary."
-      }
+      { "author": "Sarah Connor", "from": "USA", "rating": 5.0, "text": "Heath Ledger's Joker is legendary." }
     ]
   },
   {
     "id": "inception",
     "title": "Inception",
     "year": 2010,
-    "genres": [
-      "Action",
-      "Sci-Fi"
-    ],
+    "genres": ["Action", "Sci-Fi"],
     "rating": 8.8,
     "duration": "2h 28min",
     "description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
     "posterUrl": "https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg",
     "backdropUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/Inception_Premiere.jpg",
     "trailerUrl": "https://www.youtube.com/embed/YoHD9XEInc0",
-    "languages": [
-      "English",
-      "Japanese"
-    ],
+    "languages": ["English", "Japanese"],
     "isNew": false,
     "isTrending": true,
     "topRank": 4,
@@ -190,31 +151,21 @@
       }
     ],
     "reviews": [
-      {
-        "author": "John Doe",
-        "from": "USA",
-        "rating": 5,
-        "text": "Mind-bending!"
-      }
+      { "author": "John Doe", "from": "USA", "rating": 5.0, "text": "Mind-bending!" }
     ]
   },
   {
     "id": "gladiator",
     "title": "Gladiator",
     "year": 2000,
-    "genres": [
-      "Action",
-      "Adventure"
-    ],
+    "genres": ["Action", "Adventure"],
     "rating": 8.5,
     "duration": "2h 35min",
     "description": "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.",
     "posterUrl": "https://upload.wikimedia.org/wikipedia/en/f/fb/Gladiator_%282000_film_poster%29.png",
     "backdropUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Gladiator_movie_set_in_Morocco.jpg",
     "trailerUrl": "https://www.youtube.com/embed/owK1qxDselE",
-    "languages": [
-      "English"
-    ],
+    "languages": ["English"],
     "isNew": false,
     "isTrending": false,
     "topRank": null,
@@ -234,31 +185,21 @@
       }
     ],
     "reviews": [
-      {
-        "author": "Maximus",
-        "from": "Italy",
-        "rating": 5,
-        "text": "Are you not entertained?!"
-      }
+      { "author": "Maximus", "from": "Italy", "rating": 5.0, "text": "Are you not entertained?!" }
     ]
   },
   {
     "id": "matrix",
     "title": "The Matrix",
     "year": 1999,
-    "genres": [
-      "Action",
-      "Sci-Fi"
-    ],
+    "genres": ["Action", "Sci-Fi"],
     "rating": 8.7,
     "duration": "2h 16min",
     "description": "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
     "posterUrl": "https://upload.wikimedia.org/wikipedia/en/c/c1/The_Matrix_Poster.jpg",
     "backdropUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Matrix_code.jpg",
     "trailerUrl": "https://www.youtube.com/embed/vKQi3bBA1y8",
-    "languages": [
-      "English"
-    ],
+    "languages": ["English"],
     "isNew": false,
     "isTrending": true,
     "topRank": 5,
@@ -282,31 +223,21 @@
       }
     ],
     "reviews": [
-      {
-        "author": "Neo",
-        "from": "USA",
-        "rating": 5,
-        "text": "Whoa."
-      }
+      { "author": "Neo", "from": "USA", "rating": 5.0, "text": "Whoa." }
     ]
   },
   {
     "id": "dune",
     "title": "Dune",
     "year": 2021,
-    "genres": [
-      "Adventure",
-      "Sci-Fi"
-    ],
-    "rating": 8,
+    "genres": ["Adventure", "Sci-Fi"],
+    "rating": 8.0,
     "duration": "2h 35min",
     "description": "Feature adaptation of Frank Herbert's science fiction novel, about the son of a noble family entrusted with the protection of the most valuable asset and most vital element in the galaxy.",
     "posterUrl": "https://upload.wikimedia.org/wikipedia/en/8/8e/Dune_%282021_film%29.jpg",
     "backdropUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Dune_landscape.jpg",
     "trailerUrl": "https://www.youtube.com/embed/n9xhJrPXop4",
-    "languages": [
-      "English"
-    ],
+    "languages": ["English"],
     "isNew": true,
     "isTrending": true,
     "topRank": 6,
@@ -330,31 +261,21 @@
       }
     ],
     "reviews": [
-      {
-        "author": "Paul A.",
-        "from": "Canada",
-        "rating": 4.5,
-        "text": "Visually stunning."
-      }
+      { "author": "Paul A.", "from": "Canada", "rating": 4.5, "text": "Visually stunning." }
     ]
   },
   {
     "id": "jurassic-park",
     "title": "Jurassic Park",
     "year": 1993,
-    "genres": [
-      "Adventure",
-      "Sci-Fi"
-    ],
+    "genres": ["Adventure", "Sci-Fi"],
     "rating": 8.2,
     "duration": "2h 7min",
     "description": "A pragmatic paleontologist visiting an almost complete theme park is tasked with protecting a couple of kids after a power failure causes the park's cloned dinosaurs to run loose.",
     "posterUrl": "https://upload.wikimedia.org/wikipedia/en/e/e7/Jurassic_Park_poster.jpg",
     "backdropUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Jurassic_Park_gate_Universal_Studios.jpg",
     "trailerUrl": "https://www.youtube.com/embed/lc0UehYemQA",
-    "languages": [
-      "English"
-    ],
+    "languages": ["English"],
     "isNew": false,
     "isTrending": false,
     "topRank": null,
@@ -378,32 +299,21 @@
       }
     ],
     "reviews": [
-      {
-        "author": "Ian M.",
-        "from": "USA",
-        "rating": 5,
-        "text": "Life finds a way."
-      }
+      { "author": "Ian M.", "from": "USA", "rating": 5.0, "text": "Life finds a way." }
     ]
   },
   {
     "id": "kantara-real",
     "title": "Kantara",
     "year": 2022,
-    "genres": [
-      "Action",
-      "Thriller"
-    ],
+    "genres": ["Action", "Thriller"],
     "rating": 8.3,
     "duration": "2h 24min",
     "description": "A story rooted in the folklore and myths of a coastal Karnataka village.",
     "posterUrl": "https://upload.wikimedia.org/wikipedia/en/8/84/Kantara_poster.jpeg",
     "backdropUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Kantara_Movie_Set.jpg",
     "trailerUrl": "https://www.youtube.com/embed/8oOEw91i_B4",
-    "languages": [
-      "Kannada",
-      "Hindi"
-    ],
+    "languages": ["Kannada", "Hindi"],
     "isNew": false,
     "isTrending": true,
     "topRank": 7,
@@ -423,31 +333,21 @@
       }
     ],
     "reviews": [
-      {
-        "author": "Anirudh",
-        "from": "India",
-        "rating": 5,
-        "text": "Brilliant storytelling."
-      }
+      { "author": "Anirudh", "from": "India", "rating": 5.0, "text": "Brilliant storytelling." }
     ]
   },
   {
     "id": "pulp-fiction",
     "title": "Pulp Fiction",
     "year": 1994,
-    "genres": [
-      "Crime",
-      "Drama"
-    ],
+    "genres": ["Crime", "Drama"],
     "rating": 8.9,
     "duration": "2h 34min",
     "description": "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
     "posterUrl": "https://upload.wikimedia.org/wikipedia/en/3/3b/Pulp_Fiction_%281994%29_poster.jpg",
     "backdropUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Pulp_Fiction_Mia_Wallace.jpg",
     "trailerUrl": "https://www.youtube.com/embed/s7EdQ4FqbhY",
-    "languages": [
-      "English"
-    ],
+    "languages": ["English"],
     "isNew": false,
     "isTrending": true,
     "topRank": 8,
@@ -471,12 +371,10 @@
       }
     ],
     "reviews": [
-      {
-        "author": "Vincent",
-        "from": "USA",
-        "rating": 5,
-        "text": "A classic."
-      }
+      { "author": "Vincent", "from": "USA", "rating": 5.0, "text": "A classic." }
     ]
   }
-]
+];
+
+fs.writeFileSync('./src/data/movies.json', JSON.stringify(movies, null, 2));
+console.log('movies.json replaced with 10 real movies.');

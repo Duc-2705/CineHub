@@ -123,7 +123,7 @@ export default function SubscriptionsPage() {
               <h2 className="font-headline-xl text-white mb-4">Start your free trial today!</h2>
               <p className="font-body-lg text-gray-400">This is a clear and concise call to action that encourages users to sign up for a free trial of CineHub.</p>
             </div>
-            <button className="bg-primary-container text-white px-10 py-5 rounded-lg font-label-md hover:bg-red-700 transition-all duration-300 hover:scale-105 shadow-xl uppercase tracking-widest whitespace-nowrap">Start Free Trial</button>
+            <button onClick={() => window.scrollTo(0, 0)} className="bg-primary-container text-white px-10 py-5 rounded-lg font-label-md hover:bg-red-700 transition-all duration-300 hover:scale-105 shadow-xl uppercase tracking-widest whitespace-nowrap">Start Free Trial</button>
           </div>
         </div>
       </section>

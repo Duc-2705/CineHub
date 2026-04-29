@@ -4,6 +4,7 @@ import movies from '../data/movies.json'
 import MovieCard from '../components/MovieCard'
 import GenreCard from '../components/GenreCard'
 import CTABanner from '../components/CTABanner'
+import TrailerModal from '../components/TrailerModal'
 
 const GENRES = [
   { name: 'Action', images: ['https://picsum.photos/seed/g-action1/150/220','https://picsum.photos/seed/g-action2/150/220','https://picsum.photos/seed/g-action3/150/220','https://picsum.photos/seed/g-action4/150/220'] },
@@ -25,25 +26,23 @@ export default function MoviesShowsPage() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const [activeGenre, setActiveGenre] = useState(searchParams.get('genre') || 'All')
-  const [playToast, setPlayToast] = useState(false)
+  const [trailerOpen, setTrailerOpen] = useState(false)
 
   const filtered = activeGenre === 'All'
     ? movies
     : movies.filter((m) => m.genres.includes(activeGenre))
 
   const handlePlay = () => {
-    setPlayToast(true)
-    setTimeout(() => setPlayToast(false), 3000)
+    setTrailerOpen(true)
   }
 
   return (
     <div className="bg-background font-body-md text-on-surface">
-      {/* Toast */}
-      {playToast && (
-        <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-surface-container border border-white/10 text-white px-6 py-3 rounded-xl shadow-2xl text-sm font-bold">
-          🎬 Trailer coming soon!
-        </div>
-      )}
+      <TrailerModal 
+        isOpen={trailerOpen} 
+        onClose={() => setTrailerOpen(false)} 
+        trailerUrl={featured.trailerUrl} 
+      />
 
       {/* Hero */}
       <header className="relative w-full h-[700px] overflow-hidden">

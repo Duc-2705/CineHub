@@ -46,7 +46,7 @@ export default function Navbar() {
             <button onClick={() => navigate('/my-list')} className="hover:scale-105 transition-all duration-200">
               <span className="material-symbols-outlined text-on-surface">bookmarks</span>
             </button>
-            <button className="hover:scale-105 transition-all duration-200">
+            <button onClick={() => alert('Notifications coming soon!')} className="hover:scale-105 transition-all duration-200">
               <span className="material-symbols-outlined text-on-surface">notifications</span>
             </button>
           </div>

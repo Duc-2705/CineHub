@@ -1,4 +1,7 @@
+import { useNavigate } from 'react-router-dom'
+
 export default function CTABanner() {
+  const navigate = useNavigate()
   return (
     <section className="max-w-[1440px] mx-auto px-10 md:px-20 py-section-gap">
       <div className="relative w-full rounded-[2rem] overflow-hidden p-16 flex flex-col md:flex-row justify-between items-center gap-10">
@@ -13,7 +16,10 @@ export default function CTABanner() {
           <p className="font-body-lg text-gray-300">This is a clear and concise call to action that encourages users to sign up for a free trial of CineHub.</p>
         </div>
         <div className="relative z-10 shrink-0">
-          <button className="bg-primary-container text-white px-10 py-5 rounded-xl font-bold text-lg hover:scale-105 transition-all shadow-xl shadow-red-600/20">
+          <button 
+            onClick={() => { window.scrollTo(0, 0); navigate('/subscriptions'); }} 
+            className="bg-primary-container text-white px-10 py-5 rounded-xl font-bold text-lg hover:scale-105 transition-all shadow-xl shadow-red-600/20"
+          >
             Start a Free Trial
           </button>
         </div>

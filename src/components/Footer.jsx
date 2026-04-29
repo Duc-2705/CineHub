@@ -18,7 +18,7 @@ export default function Footer() {
           </p>
           <div className="flex gap-4">
             {['social_leaderboard', 'retweet', 'link'].map((icon) => (
-              <span key={icon} className="material-symbols-outlined text-white p-2 bg-surface-container rounded-lg cursor-pointer hover:text-red-600 transition-colors">
+              <span key={icon} onClick={() => alert('Social links coming soon!')} className="material-symbols-outlined text-white p-2 bg-surface-container rounded-lg cursor-pointer hover:text-red-600 transition-colors">
                 {icon}
               </span>
             ))}
@@ -43,7 +43,7 @@ export default function Footer() {
         <p className="font-['Be_Vietnam_Pro'] text-sm text-gray-400">© 2024 CineHub. All rights reserved.</p>
         <div className="flex gap-6 font-['Be_Vietnam_Pro'] text-xs text-gray-500">
           {['Terms of Use', 'Privacy Policy', 'Cookie Policy'].map((t) => (
-            <a key={t} href="#" className="hover:text-white">{t}</a>
+            <button key={t} onClick={() => alert('Legal info coming soon!')} className="hover:text-white transition-colors">{t}</button>
           ))}
         </div>
       </div>
