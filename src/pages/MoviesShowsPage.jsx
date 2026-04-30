@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import movies from '../data/movies.json'
 import MovieCard from '../components/MovieCard'
@@ -6,13 +6,17 @@ import GenreCard from '../components/GenreCard'
 import CTABanner from '../components/CTABanner'
 import TrailerModal from '../components/TrailerModal'
 
-const GENRES = [
-  { name: 'Action', images: ['https://picsum.photos/seed/g-action1/150/220','https://picsum.photos/seed/g-action2/150/220','https://picsum.photos/seed/g-action3/150/220','https://picsum.photos/seed/g-action4/150/220'] },
-  { name: 'Adventure', images: ['https://picsum.photos/seed/g-adv1/150/220','https://picsum.photos/seed/g-adv2/150/220','https://picsum.photos/seed/g-adv3/150/220','https://picsum.photos/seed/g-adv4/150/220'] },
-  { name: 'Comedy', images: ['https://picsum.photos/seed/g-com1/150/220','https://picsum.photos/seed/g-com2/150/220','https://picsum.photos/seed/g-com3/150/220','https://picsum.photos/seed/g-com4/150/220'] },
-  { name: 'Drama', images: ['https://picsum.photos/seed/g-dra1/150/220','https://picsum.photos/seed/g-dra2/150/220','https://picsum.photos/seed/g-dra3/150/220','https://picsum.photos/seed/g-dra4/150/220'] },
-  { name: 'Horror', images: ['https://picsum.photos/seed/g-hor1/150/220','https://picsum.photos/seed/g-hor2/150/220','https://picsum.photos/seed/g-hor3/150/220','https://picsum.photos/seed/g-hor4/150/220'] },
-]
+const GENRE_NAMES = ['Action', 'Adventure', 'Comedy', 'Drama', 'Horror']
+const GENRES = GENRE_NAMES.map(name => {
+  const matching = movies.filter(m => m.genres && m.genres.includes(name)).map(m => m.posterUrl)
+  let images = [...matching]
+  if (images.length > 0) {
+    while (images.length < 4) images = [...images, ...images]
+  } else {
+    images = ['','','','']
+  }
+  return { name, images: images.slice(0, 4) }
+})
 
 const GENRE_TABS = ['All', 'Action', 'Adventure', 'Comedy', 'Drama', 'Horror']
 
@@ -23,10 +27,20 @@ const newReleases = movies.filter((m) => m.isNew)
 const mustWatch = movies.slice(0, 4)
 
 export default function MoviesShowsPage() {
-  const [searchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams()
   const navigate = useNavigate()
-  const [activeGenre, setActiveGenre] = useState(searchParams.get('genre') || 'All')
+  const activeGenre = searchParams.get('genre') || 'All'
   const [trailerOpen, setTrailerOpen] = useState(false)
+  const top10Ref = useRef(null)
+
+  useEffect(() => {
+    const genre = searchParams.get('genre')
+    if (genre && top10Ref.current) {
+      setTimeout(() => {
+        top10Ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 100)
+    }
+  }, [searchParams])
 
   const filtered = activeGenre === 'All'
     ? movies
@@ -82,13 +96,13 @@ export default function MoviesShowsPage() {
         </section>
 
         {/* Top 10 */}
-        <section className="mb-section-gap">
+        <section ref={top10Ref} className="mb-section-gap scroll-mt-24">
           <h2 className="font-headline-lg text-white mb-8">Popular Top 10 In Genres</h2>
           <div className="flex gap-4 mb-10 overflow-x-auto pb-4 no-scrollbar">
             {GENRE_TABS.map((g) => (
               <button
                 key={g}
-                onClick={() => setActiveGenre(g)}
+                onClick={() => setSearchParams(g === 'All' ? {} : { genre: g })}
                 className={`px-6 py-2 rounded-lg whitespace-nowrap font-bold transition-colors ${activeGenre === g ? 'bg-primary-container text-white' : 'bg-surface-container text-gray-400 hover:text-white'}`}
               >
                 {g}

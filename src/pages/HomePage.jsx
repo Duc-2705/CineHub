@@ -7,13 +7,17 @@ import FAQItem from '../components/FAQItem'
 import PricingCard from '../components/PricingCard'
 import CTABanner from '../components/CTABanner'
 
-const GENRES = [
-  { name: 'Action', images: ['https://picsum.photos/seed/g-action1/150/220','https://picsum.photos/seed/g-action2/150/220','https://picsum.photos/seed/g-action3/150/220','https://picsum.photos/seed/g-action4/150/220'] },
-  { name: 'Adventure', images: ['https://picsum.photos/seed/g-adv1/150/220','https://picsum.photos/seed/g-adv2/150/220','https://picsum.photos/seed/g-adv3/150/220','https://picsum.photos/seed/g-adv4/150/220'] },
-  { name: 'Comedy', images: ['https://picsum.photos/seed/g-com1/150/220','https://picsum.photos/seed/g-com2/150/220','https://picsum.photos/seed/g-com3/150/220','https://picsum.photos/seed/g-com4/150/220'] },
-  { name: 'Drama', images: ['https://picsum.photos/seed/g-dra1/150/220','https://picsum.photos/seed/g-dra2/150/220','https://picsum.photos/seed/g-dra3/150/220','https://picsum.photos/seed/g-dra4/150/220'] },
-  { name: 'Horror', images: ['https://picsum.photos/seed/g-hor1/150/220','https://picsum.photos/seed/g-hor2/150/220','https://picsum.photos/seed/g-hor3/150/220','https://picsum.photos/seed/g-hor4/150/220'] },
-]
+const GENRE_NAMES = ['Action', 'Adventure', 'Comedy', 'Drama', 'Horror']
+const GENRES = GENRE_NAMES.map(name => {
+  const matching = movies.filter(m => m.genres && m.genres.includes(name)).map(m => m.posterUrl)
+  let images = [...matching]
+  if (images.length > 0) {
+    while (images.length < 4) images = [...images, ...images]
+  } else {
+    images = ['','','','']
+  }
+  return { name, images: images.slice(0, 4) }
+})
 
 const DEVICES = [
   { icon: 'smartphone', title: 'Smartphones', desc: 'CineHub is optimized for both Android and iOS devices. Watch on our mobile app or web browser.' },
