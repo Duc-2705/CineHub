@@ -5,12 +5,14 @@ import { useMyList } from '../hooks/useMyList'
 import StarRating from '../components/StarRating'
 import CTABanner from '../components/CTABanner'
 import TrailerModal from '../components/TrailerModal'
+import FullMoviePlayer from '../components/FullMoviePlayer'
 
 export default function MovieDetailPage() {
   const { id } = useParams()
   const navigate = useNavigate()
   const { isInList, toggleList } = useMyList()
   const [trailerOpen, setTrailerOpen] = useState(false)
+  const [fullMovieOpen, setFullMovieOpen] = useState(false)
 
   const [userRating, setUserRating] = useState(0)
   const [userReviews, setUserReviews] = useState([])
@@ -81,6 +83,11 @@ export default function MovieDetailPage() {
         onClose={() => setTrailerOpen(false)} 
         trailerUrl={movie.trailerUrl} 
       />
+      <FullMoviePlayer
+        isOpen={fullMovieOpen}
+        onClose={() => setFullMovieOpen(false)}
+        movieUrl={movie.fullMovieUrl}
+      />
 
       {/* Hero */}
       <section className="relative pt-20 w-full px-10 md:px-20 mt-6">
@@ -90,9 +97,13 @@ export default function MovieDetailPage() {
             <h1 className="font-headline-xl text-white mb-4 tracking-tight">{movie.title}</h1>
             <p className="max-w-2xl text-gray-300 font-body-md mb-8">{movie.description}</p>
             <div className="flex gap-4">
-              <button onClick={handlePlay} className="bg-primary-container text-white px-8 py-3 rounded-lg font-label-md flex items-center gap-2 hover:scale-105 transition-transform">
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
-                Play Now
+              <button onClick={() => setFullMovieOpen(true)} className="bg-primary-container text-white px-6 py-3 rounded-lg font-label-md flex items-center gap-2 hover:scale-105 transition-transform">
+                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>play_circle</span>
+                Watch Full Movie (Demo)
+              </button>
+              <button onClick={() => setTrailerOpen(true)} className="bg-surface-container-highest/80 border border-white/20 text-white px-6 py-3 rounded-lg font-label-md flex items-center gap-2 hover:bg-surface-container-highest transition-colors">
+                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>movie</span>
+                Trailer
               </button>
               <button
                 onClick={() => toggleList(movie.id)}
