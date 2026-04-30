@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import movies from '../data/movies.json'
 import { useMyList } from '../hooks/useMyList'
@@ -11,6 +11,53 @@ export default function MovieDetailPage() {
   const navigate = useNavigate()
   const { isInList, toggleList } = useMyList()
   const [trailerOpen, setTrailerOpen] = useState(false)
+
+  const [userRating, setUserRating] = useState(0)
+  const [userReviews, setUserReviews] = useState([])
+  const [showReviewForm, setShowReviewForm] = useState(false)
+  
+  const [reviewName, setReviewName] = useState('')
+  const [reviewRating, setReviewRating] = useState(5)
+  const [reviewText, setReviewText] = useState('')
+
+  useEffect(() => {
+    if (id) {
+      const storedRating = localStorage.getItem(`cinehub_rating_${id}`)
+      if (storedRating) setUserRating(Number(storedRating))
+
+      const storedReviews = localStorage.getItem(`cinehub_reviews_${id}`)
+      if (storedReviews) setUserReviews(JSON.parse(storedReviews))
+    }
+  }, [id])
+
+  const handleRatingChange = (newRating) => {
+    setUserRating(newRating)
+    localStorage.setItem(`cinehub_rating_${id}`, newRating)
+  }
+
+  const handleReviewSubmit = (e) => {
+    e.preventDefault()
+    if (!reviewName.trim() || !reviewText.trim()) return
+
+    const newReview = {
+      author: reviewName,
+      from: 'CineHub User',
+      rating: reviewRating,
+      text: reviewText,
+      id: Date.now()
+    }
+
+    const updatedReviews = [newReview, ...userReviews]
+    setUserReviews(updatedReviews)
+    localStorage.setItem(`cinehub_reviews_${id}`, JSON.stringify(updatedReviews))
+
+    // Reset
+    setReviewName('')
+    setReviewRating(5)
+    setReviewText('')
+    setShowReviewForm(false)
+    alert('Review added successfully!')
+  }
 
   const movie = movies.find((m) => m.id === id)
 
@@ -49,15 +96,16 @@ export default function MovieDetailPage() {
               </button>
               <button
                 onClick={() => toggleList(movie.id)}
-                className="bg-surface-container-highest/60 border border-white/10 p-3 rounded-lg hover:bg-surface-container-highest transition-colors"
+                className="bg-surface-container-highest/60 border border-white/10 p-3 rounded-lg hover:bg-surface-container-highest transition-colors flex items-center justify-center"
               >
                 <span className="material-symbols-outlined" style={inList ? { fontVariationSettings: "'FILL' 1", color: '#e50000' } : {}}>
                   {inList ? 'bookmark' : 'bookmark_add'}
                 </span>
               </button>
-              <button onClick={() => alert('Liked!')} className="bg-surface-container-highest/60 border border-white/10 p-3 rounded-lg hover:bg-surface-container-highest transition-colors">
-                <span className="material-symbols-outlined">thumb_up</span>
-              </button>
+              <div className="bg-surface-container-highest/60 border border-white/10 px-4 py-2 rounded-lg flex flex-col justify-center items-center">
+                <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Rate this</span>
+                <StarRating rating={userRating} onRatingChange={handleRatingChange} size="text-sm" />
+              </div>
             </div>
           </div>
         </div>
@@ -100,13 +148,39 @@ export default function MovieDetailPage() {
           <div className="bg-surface-container-low p-10 rounded-xl border border-white/5">
             <div className="flex justify-between items-center mb-8">
               <h2 className="text-gray-400 font-label-md">Reviews</h2>
-              <button onClick={() => alert('Review feature coming soon!')} className="bg-surface-container-highest px-4 py-2 rounded-lg text-sm border border-white/10 flex items-center gap-2 hover:bg-surface-container transition-colors">
-                <span className="material-symbols-outlined text-sm">add</span> Add Your Review
+              <button 
+                onClick={() => setShowReviewForm(!showReviewForm)} 
+                className="bg-surface-container-highest px-4 py-2 rounded-lg text-sm border border-white/10 flex items-center gap-2 hover:bg-surface-container transition-colors"
+              >
+                <span className="material-symbols-outlined text-sm">{showReviewForm ? 'close' : 'add'}</span> {showReviewForm ? 'Cancel' : 'Add Your Review'}
               </button>
             </div>
+
+            {showReviewForm && (
+              <form onSubmit={handleReviewSubmit} className="mb-8 bg-surface p-6 rounded-lg border border-white/10 flex flex-col gap-4">
+                <h3 className="font-bold text-white mb-2">Write a Review</h3>
+                <div>
+                  <label className="block text-xs text-gray-400 mb-1">Your Name</label>
+                  <input required value={reviewName} onChange={e => setReviewName(e.target.value)} type="text" className="w-full bg-surface-container px-4 py-2 rounded border border-white/5 text-white focus:outline-none focus:border-red-600" placeholder="John Doe" />
+                </div>
+                <div>
+                  <label className="block text-xs text-gray-400 mb-1">Your Rating</label>
+                  <StarRating rating={reviewRating} onRatingChange={setReviewRating} size="text-lg" />
+                </div>
+                <div>
+                  <label className="block text-xs text-gray-400 mb-1">Comment</label>
+                  <textarea required value={reviewText} onChange={e => setReviewText(e.target.value)} rows="3" className="w-full bg-surface-container px-4 py-2 rounded border border-white/5 text-white focus:outline-none focus:border-red-600" placeholder="What did you think of the movie?"></textarea>
+                </div>
+                <button type="submit" className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition-colors self-start">Submit Review</button>
+              </form>
+            )}
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {movie.reviews && movie.reviews.length > 0 ? (
-                movie.reviews.map((r) => (
+              {(() => {
+                const allReviews = [...userReviews, ...(movie.reviews || [])]
+                if (allReviews.length === 0) return <p className="text-gray-500 text-sm italic">No reviews yet.</p>
+                
+                return allReviews.map((r, idx) => (
                   <div key={r.author} className="bg-surface p-6 rounded-lg border border-white/5">
                     <div className="flex justify-between items-start mb-4">
                       <div>
@@ -121,9 +195,7 @@ export default function MovieDetailPage() {
                     <p className="text-gray-400 text-sm leading-relaxed">{r.text}</p>
                   </div>
                 ))
-              ) : (
-                <p className="text-gray-500 text-sm italic">No reviews yet.</p>
-              )}
+              })()}
             </div>
           </div>
         </div>
@@ -169,9 +241,20 @@ export default function MovieDetailPage() {
                     <span className="text-white font-bold">{movie.rating}</span>
                   </div>
                 </div>
-                <div className="bg-surface p-3 rounded-lg border border-white/10">
-                  <p className="text-xs text-gray-500 mb-1">CineHub</p>
-                  <StarRating rating={movie.rating / 2} />
+                <div className="bg-surface p-3 rounded-lg border border-white/10 flex flex-col justify-center">
+                  <p className="text-xs text-gray-500 mb-1 flex justify-between">
+                    CineHub
+                    <span className="text-gray-400">{(() => {
+                      const allR = [...userReviews, ...(movie.reviews || [])]
+                      if (allR.length === 0) return (movie.rating / 2).toFixed(1)
+                      return (allR.reduce((sum, r) => sum + r.rating, 0) / allR.length).toFixed(1)
+                    })()}</span>
+                  </p>
+                  <StarRating rating={(() => {
+                    const allR = [...userReviews, ...(movie.reviews || [])]
+                    if (allR.length === 0) return movie.rating / 2
+                    return allR.reduce((sum, r) => sum + r.rating, 0) / allR.length
+                  })()} />
                 </div>
               </div>
             </div>
