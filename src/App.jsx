@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import ScrollToTop from './components/ScrollToTop'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import HomePage from './pages/HomePage'
@@ -12,6 +13,7 @@ import SearchPage from './pages/SearchPage'
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
