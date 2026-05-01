@@ -5,6 +5,7 @@ import MovieCard from '../components/MovieCard'
 import GenreCard from '../components/GenreCard'
 import CTABanner from '../components/CTABanner'
 import TrailerModal from '../components/TrailerModal'
+import Slider from '../components/Slider'
 
 const GENRE_NAMES = ['Action', 'Adventure', 'Comedy', 'Drama', 'Horror']
 const GENRES = GENRE_NAMES.map(name => {
@@ -24,7 +25,7 @@ const featured = movies.find((m) => m.isTrending) || movies[0]
 const top10 = movies.filter((m) => m.topRank).sort((a, b) => a.topRank - b.topRank)
 const trending = movies.filter((m) => m.isTrending)
 const newReleases = movies.filter((m) => m.isNew)
-const mustWatch = movies.slice(0, 4)
+const mustWatch = movies.filter(m => m.rating >= 7.5)
 
 export default function MoviesShowsPage() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -109,8 +110,9 @@ export default function MoviesShowsPage() {
               </button>
             ))}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter">
-            {(activeGenre === 'All' ? top10 : filtered).slice(0, 4).map((m, i) => (
+          <Slider
+            items={activeGenre === 'All' ? top10 : filtered}
+            renderItem={(m, i) => (
               <div key={m.id} className="bg-surface-container p-4 rounded-xl border border-white/5 hover:scale-[1.02] transition-transform cursor-pointer" onClick={() => navigate(`/movie/${m.id}`)}>
                 <img className="w-full aspect-[2/3] object-cover rounded-lg mb-4" src={m.posterUrl} alt={m.title} />
                 <div className="flex justify-between items-center">
@@ -121,37 +123,40 @@ export default function MoviesShowsPage() {
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+            )}
+          />
         </section>
 
         {/* Trending Now */}
         <section className="mb-section-gap">
           <h2 className="font-headline-lg text-white mb-8">Trending Now</h2>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-            {trending.map((m) => <MovieCard key={m.id} movie={m} variant="poster" />)}
-          </div>
+          <Slider 
+            items={trending} 
+            renderItem={(m) => <MovieCard key={m.id} movie={m} variant="poster" />} 
+          />
         </section>
 
         {/* New Releases */}
         <section className="mb-section-gap">
           <h2 className="font-headline-lg text-white mb-8">New Releases</h2>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-            {newReleases.map((m) => (
+          <Slider
+            items={newReleases}
+            renderItem={(m) => (
               <div key={m.id} className="group relative aspect-[2/3] rounded-xl overflow-hidden cursor-pointer" onClick={() => navigate(`/movie/${m.id}`)}>
                 <img className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src={m.posterUrl} alt={m.title} />
                 <div className="absolute top-2 left-2 bg-red-600 text-[10px] px-2 py-0.5 rounded font-bold uppercase">New</div>
               </div>
-            ))}
-          </div>
+            )}
+          />
         </section>
 
         {/* Must Watch */}
         <section className="mb-section-gap">
           <h2 className="font-headline-lg text-white mb-8">Must-Watch Movies</h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter">
-            {mustWatch.map((m) => <MovieCard key={m.id} movie={m} />)}
-          </div>
+          <Slider 
+            items={mustWatch} 
+            renderItem={(m) => <MovieCard key={m.id} movie={m} />} 
+          />
         </section>
 
         <CTABanner />
