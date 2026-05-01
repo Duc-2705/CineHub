@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import movies from '../data/movies.json'
 import { useMyList } from '../hooks/useMyList'
+import { useAuth } from '../hooks/useAuth'
 import StarRating from '../components/StarRating'
 import CTABanner from '../components/CTABanner'
 import TrailerModal from '../components/TrailerModal'
@@ -10,7 +11,9 @@ import FullMoviePlayer from '../components/FullMoviePlayer'
 export default function MovieDetailPage() {
   const { id } = useParams()
   const navigate = useNavigate()
+  const location = useLocation()
   const { isInList, toggleList } = useMyList()
+  const { currentUser } = useAuth()
   const [trailerOpen, setTrailerOpen] = useState(false)
   const [fullMovieOpen, setFullMovieOpen] = useState(false)
 
@@ -39,10 +42,10 @@ export default function MovieDetailPage() {
 
   const handleReviewSubmit = (e) => {
     e.preventDefault()
-    if (!reviewName.trim() || !reviewText.trim()) return
+    if (!reviewText.trim()) return
 
     const newReview = {
-      author: reviewName,
+      author: currentUser?.name || 'Anonymous',
       from: 'CineHub User',
       rating: reviewRating,
       text: reviewText,
@@ -160,7 +163,13 @@ export default function MovieDetailPage() {
             <div className="flex justify-between items-center mb-8">
               <h2 className="text-gray-400 font-label-md">Reviews</h2>
               <button 
-                onClick={() => setShowReviewForm(!showReviewForm)} 
+                onClick={() => {
+                  if (!currentUser) {
+                    navigate('/login', { state: { from: location } });
+                    return;
+                  }
+                  setShowReviewForm(!showReviewForm)
+                }} 
                 className="bg-surface-container-highest px-4 py-2 rounded-lg text-sm border border-white/10 flex items-center gap-2 hover:bg-surface-container transition-colors"
               >
                 <span className="material-symbols-outlined text-sm">{showReviewForm ? 'close' : 'add'}</span> {showReviewForm ? 'Cancel' : 'Add Your Review'}
@@ -170,9 +179,8 @@ export default function MovieDetailPage() {
             {showReviewForm && (
               <form onSubmit={handleReviewSubmit} className="mb-8 bg-surface p-6 rounded-lg border border-white/10 flex flex-col gap-4">
                 <h3 className="font-bold text-white mb-2">Write a Review</h3>
-                <div>
-                  <label className="block text-xs text-gray-400 mb-1">Your Name</label>
-                  <input required value={reviewName} onChange={e => setReviewName(e.target.value)} type="text" className="w-full bg-surface-container px-4 py-2 rounded border border-white/5 text-white focus:outline-none focus:border-red-600" placeholder="John Doe" />
+                <div className="text-sm text-gray-400 mb-2">
+                  Posting as <span className="text-white font-bold">{currentUser?.name}</span>
                 </div>
                 <div>
                   <label className="block text-xs text-gray-400 mb-1">Your Rating</label>

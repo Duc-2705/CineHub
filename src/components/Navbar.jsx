@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import SearchOverlay from './SearchOverlay'
+import { useAuth } from '../hooks/useAuth'
 
 const NAV_LINKS = [
   { label: 'Home', to: '/' },
@@ -13,6 +14,7 @@ export default function Navbar() {
   const { pathname } = useLocation()
   const navigate = useNavigate()
   const [searchOpen, setSearchOpen] = useState(false)
+  const { currentUser, logout } = useAuth()
 
   return (
     <>
@@ -46,9 +48,31 @@ export default function Navbar() {
             <button onClick={() => navigate('/my-list')} className="hover:scale-105 transition-all duration-200">
               <span className="material-symbols-outlined text-on-surface">bookmarks</span>
             </button>
-            <button onClick={() => alert('Notifications coming soon!')} className="hover:scale-105 transition-all duration-200">
+            <button onClick={() => alert('Notifications coming soon!')} className="hover:scale-105 transition-all duration-200 hidden md:block">
               <span className="material-symbols-outlined text-on-surface">notifications</span>
             </button>
+            
+            <div className="border-l border-white/20 h-6 mx-2 hidden md:block"></div>
+
+            {currentUser ? (
+              <div className="flex items-center gap-4">
+                <span className="text-sm font-bold text-white hidden md:block">Hi, {currentUser.name}</span>
+                <button 
+                  onClick={logout} 
+                  className="bg-surface-container hover:bg-surface-container-high border border-white/10 px-4 py-2 rounded-lg text-sm text-gray-300 hover:text-white transition-colors flex items-center gap-2"
+                >
+                  <span className="material-symbols-outlined text-sm">logout</span>
+                  <span className="hidden md:block">Logout</span>
+                </button>
+              </div>
+            ) : (
+              <button 
+                onClick={() => navigate('/login')} 
+                className="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg text-sm font-bold transition-colors"
+              >
+                Sign In
+              </button>
+            )}
           </div>
         </div>
       </nav>

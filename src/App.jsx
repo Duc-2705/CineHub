@@ -9,22 +9,34 @@ import SubscriptionsPage from './pages/SubscriptionsPage'
 import SupportPage from './pages/SupportPage'
 import MyListPage from './pages/MyListPage'
 import SearchPage from './pages/SearchPage'
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
+import ProtectedRoute from './components/ProtectedRoute'
+import { AuthProvider } from './hooks/useAuth'
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/movies" element={<MoviesShowsPage />} />
-        <Route path="/movie/:id" element={<MovieDetailPage />} />
-        <Route path="/subscriptions" element={<SubscriptionsPage />} />
-        <Route path="/support" element={<SupportPage />} />
-        <Route path="/my-list" element={<MyListPage />} />
-        <Route path="/search" element={<SearchPage />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/movies" element={<MoviesShowsPage />} />
+          <Route path="/movie/:id" element={<MovieDetailPage />} />
+          <Route path="/subscriptions" element={<SubscriptionsPage />} />
+          <Route path="/support" element={<SupportPage />} />
+          <Route path="/my-list" element={
+            <ProtectedRoute>
+              <MyListPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/search" element={<SearchPage />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </AuthProvider>
   )
 }
