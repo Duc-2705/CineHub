@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import SearchOverlay from './SearchOverlay'
 import { useAuth } from '../hooks/useAuth'
+import { getNotifications, markNotificationAsRead } from '../utils/dataStore'
 
 const NAV_LINKS = [
   { label: 'Home', to: '/' },
@@ -15,6 +16,54 @@ export default function Navbar() {
   const navigate = useNavigate()
   const [searchOpen, setSearchOpen] = useState(false)
   const { currentUser, logout } = useAuth()
+
+  const [notifications, setNotifications] = useState([])
+  const [showNotifications, setShowNotifications] = useState(false)
+  const notifRef = useRef(null)
+
+  // Polling notifications
+  useEffect(() => {
+    if (!currentUser) {
+      setNotifications([])
+      return
+    }
+
+    const fetchNotifs = () => {
+      const all = getNotifications()
+      setNotifications(
+        all.filter(n => n.userId === currentUser.id)
+           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+      )
+    }
+
+    fetchNotifs()
+    const interval = setInterval(fetchNotifs, 3000)
+    return () => clearInterval(interval)
+  }, [currentUser])
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (notifRef.current && !notifRef.current.contains(e.target)) {
+        setShowNotifications(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  const handleNotificationClick = (n) => {
+    if (!n.isRead) {
+      markNotificationAsRead(n.id)
+      setNotifications(prev => prev.map(p => p.id === n.id ? { ...p, isRead: true } : p))
+    }
+    setShowNotifications(false)
+    if (n.supportId) {
+      navigate(`/support#msg-${n.supportId}`)
+    }
+  }
+
+  const unreadCount = notifications.filter(n => !n.isRead).length
 
   return (
     <>
@@ -48,9 +97,55 @@ export default function Navbar() {
             <button onClick={() => navigate('/my-list')} className="hover:scale-105 transition-all duration-200">
               <span className="material-symbols-outlined text-on-surface">bookmarks</span>
             </button>
-            <button onClick={() => alert('Notifications coming soon!')} className="hover:scale-105 transition-all duration-200 hidden md:block">
-              <span className="material-symbols-outlined text-on-surface">notifications</span>
-            </button>
+            
+            {currentUser && (
+              <div className="relative hidden md:block" ref={notifRef}>
+                <button 
+                  onClick={() => setShowNotifications(!showNotifications)} 
+                  className="hover:scale-105 transition-all duration-200 relative pt-1"
+                >
+                  <span className="material-symbols-outlined text-on-surface">notifications</span>
+                  {unreadCount > 0 && (
+                    <span className="absolute top-0 -right-1 bg-red-600 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-black">
+                      {unreadCount}
+                    </span>
+                  )}
+                </button>
+
+                {showNotifications && (
+                  <div className="absolute right-0 mt-4 w-80 bg-[#1A1A1A] border border-white/10 rounded-xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-4 duration-200">
+                    <div className="p-4 border-b border-white/10 flex justify-between items-center bg-surface-container">
+                      <h3 className="font-bold text-white">Notifications</h3>
+                      {unreadCount > 0 && <span className="text-xs text-red-500 font-bold">{unreadCount} unread</span>}
+                    </div>
+                    <div className="max-h-[300px] overflow-y-auto">
+                      {notifications.length === 0 ? (
+                        <div className="p-8 text-center text-gray-500 text-sm">
+                          No notifications yet
+                        </div>
+                      ) : (
+                        notifications.map(n => (
+                          <div 
+                            key={n.id} 
+                            onClick={() => handleNotificationClick(n)}
+                            className={`p-4 border-b border-white/5 cursor-pointer transition-colors hover:bg-white/5 flex gap-4 items-start ${!n.isRead ? 'bg-red-600/5' : ''}`}
+                          >
+                            <div className="mt-1">
+                              {n.type === 'support_reply' && <span className="material-symbols-outlined text-red-500 text-sm">support_agent</span>}
+                            </div>
+                            <div className="flex-1">
+                              <p className={`text-sm mb-1 ${!n.isRead ? 'text-white font-bold' : 'text-gray-300'}`}>{n.message}</p>
+                              <p className="text-xs text-gray-500">{new Date(n.createdAt).toLocaleString()}</p>
+                            </div>
+                            {!n.isRead && <div className="w-2 h-2 bg-red-600 rounded-full mt-1.5"></div>}
+                          </div>
+                        ))
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
             
             <div className="border-l border-white/20 h-6 mx-2 hidden md:block"></div>
 

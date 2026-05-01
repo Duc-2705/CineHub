@@ -53,3 +53,26 @@ export const addSupportMessage = (messageData) => {
 export const saveSupportMessages = (messages) => {
   localStorage.setItem('cinehub_support_messages', JSON.stringify(messages));
 };
+
+export const getNotifications = () => {
+  return JSON.parse(localStorage.getItem('cinehub_notifications') || '[]');
+};
+
+export const addNotification = (notificationData) => {
+  const notifications = getNotifications();
+  notifications.push({
+    ...notificationData,
+    id: Date.now().toString(),
+    isRead: false,
+    createdAt: new Date().toISOString()
+  });
+  localStorage.setItem('cinehub_notifications', JSON.stringify(notifications));
+};
+
+export const markNotificationAsRead = (notificationId) => {
+  const notifications = getNotifications();
+  const updated = notifications.map(n => 
+    n.id === notificationId ? { ...n, isRead: true } : n
+  );
+  localStorage.setItem('cinehub_notifications', JSON.stringify(updated));
+};

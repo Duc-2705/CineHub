@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getSupportMessages, saveSupportMessages } from '../../utils/dataStore';
+import { getSupportMessages, saveSupportMessages, addNotification } from '../../utils/dataStore';
 
 export default function AdminSupport() {
   const [messages, setMessages] = useState([]);
@@ -15,6 +15,16 @@ export default function AdminSupport() {
     
     const updatedMessages = messages.map(m => {
       if (m.id === selectedMessage.id) {
+        // Only trigger notification if it's the first time replying
+        if (m.status === 'pending') {
+          addNotification({
+            userId: m.userId,
+            supportId: m.id,
+            type: 'support_reply',
+            message: 'Admin replied to your support request'
+          });
+        }
+        
         return {
           ...m,
           status: 'replied',
@@ -47,7 +57,7 @@ export default function AdminSupport() {
                 className={`w-full text-left p-6 border-b border-white/5 transition-colors ${selectedMessage?.id === msg.id ? 'bg-surface-container-high border-l-4 border-l-red-600' : 'hover:bg-white/5 border-l-4 border-l-transparent'}`}
               >
                 <div className="flex justify-between items-start mb-2">
-                  <h3 className="font-bold text-white truncate pr-4">{msg.firstName} {msg.lastName}</h3>
+                  <h3 className="font-bold text-white truncate pr-4">{msg.userName || `${msg.firstName} ${msg.lastName}`}</h3>
                   <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase whitespace-nowrap ${msg.status === 'pending' ? 'bg-orange-600/20 text-orange-500' : 'bg-green-600/20 text-green-500'}`}>
                     {msg.status}
                   </span>
@@ -66,7 +76,7 @@ export default function AdminSupport() {
               <div className="mb-8">
                 <div className="flex justify-between items-start mb-6">
                   <div>
-                    <h2 className="text-2xl font-bold text-white mb-1">{selectedMessage.firstName} {selectedMessage.lastName}</h2>
+                    <h2 className="text-2xl font-bold text-white mb-1">{selectedMessage.userName || `${selectedMessage.firstName} ${selectedMessage.lastName}`}</h2>
                     <p className="text-gray-400">{selectedMessage.email} • {selectedMessage.phone}</p>
                   </div>
                   <div className="text-right">

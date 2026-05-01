@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const POSTERS = [
   'https://picsum.photos/seed/supp1/200/300',
@@ -16,24 +16,52 @@ const FAQS = [
   { q: 'How do I cancel my subscription?', a: 'You can cancel your subscription at any time through your account settings. There are no cancellation fees or long-term commitments.' },
 ]
 
-import { useNavigate } from 'react-router-dom'
-import { addSupportMessage } from '../utils/dataStore'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { addSupportMessage, getSupportMessages } from '../utils/dataStore'
+import { useAuth } from '../hooks/useAuth'
 
 export default function SupportPage() {
   const navigate = useNavigate()
+  const location = useLocation()
+  const { currentUser } = useAuth()
   const [toast, setToast] = useState(false)
+  const [myMessages, setMyMessages] = useState([])
+
+  // Fetch past messages
+  useEffect(() => {
+    if (currentUser) {
+      const allMsgs = getSupportMessages()
+      setMyMessages(allMsgs.filter(m => m.userId === currentUser.id).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)))
+      
+      // Handle scrolling if there's a hash in the URL (e.g. #msg-123)
+      if (location.hash) {
+        setTimeout(() => {
+          const el = document.getElementById(location.hash.substring(1));
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            el.classList.add('ring-2', 'ring-red-600', 'transition-all');
+            setTimeout(() => el.classList.remove('ring-2', 'ring-red-600'), 2000);
+          }
+        }, 300); // slight delay to allow rendering
+      }
+    }
+  }, [currentUser, location.hash])
 
   const handleSubmit = (e) => {
     e.preventDefault()
     
     const formData = new FormData(e.target)
-    addSupportMessage({
-      firstName: formData.get('firstName'),
-      lastName: formData.get('lastName'),
-      email: formData.get('email'),
+    const newMsg = {
+      userId: currentUser.id,
+      userName: currentUser.name,
+      email: currentUser.email,
       phone: formData.get('phonePrefix') + ' ' + formData.get('phone'),
       message: formData.get('message'),
-    })
+    }
+    addSupportMessage(newMsg)
+
+    // Update local state to reflect immediately
+    setMyMessages(prev => [{ ...newMsg, id: Date.now().toString(), status: 'pending', createdAt: new Date().toISOString() }, ...prev])
 
     setToast(true)
     setTimeout(() => setToast(false), 3000)
@@ -66,48 +94,88 @@ export default function SupportPage() {
           </div>
         </div>
 
-        {/* Right Content: Contact Form */}
-        <div className="lg:col-span-7 bg-[#1A1A1A] rounded-xl p-10 border border-white/10 shadow-2xl">
-          <form className="space-y-8" onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="flex flex-col gap-2">
-                <label className="font-label-md text-white">First Name</label>
-                <input required name="firstName" className="bg-[#131313] border border-white/10 rounded-lg py-4 px-6 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-gray-600 text-white" placeholder="Enter First Name" type="text" />
+        {/* Right Content: Contact Form & History */}
+        <div className="lg:col-span-7 flex flex-col gap-10">
+          <div className="bg-[#1A1A1A] rounded-xl p-10 border border-white/10 shadow-2xl">
+            {!currentUser ? (
+              <div className="flex flex-col items-center justify-center text-center py-10">
+                <span className="material-symbols-outlined text-6xl text-gray-600 mb-4">lock</span>
+                <h2 className="text-2xl font-bold text-white mb-2">Please login to send a support request</h2>
+                <p className="text-gray-400 mb-8">You need an account to contact our support team so we can assist you better.</p>
+                <button 
+                  onClick={() => navigate('/login', { state: { from: location } })}
+                  className="bg-red-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-red-700 transition-colors"
+                >
+                  Log In Now
+                </button>
               </div>
-              <div className="flex flex-col gap-2">
-                <label className="font-label-md text-white">Last Name</label>
-                <input required name="lastName" className="bg-[#131313] border border-white/10 rounded-lg py-4 px-6 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-gray-600 text-white" placeholder="Enter Last Name" type="text" />
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="flex flex-col gap-2">
-                <label className="font-label-md text-white">Email</label>
-                <input required name="email" className="bg-[#131313] border border-white/10 rounded-lg py-4 px-6 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-gray-600 text-white" placeholder="Enter your Email" type="email" />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="font-label-md text-white">Phone Number</label>
-                <div className="flex gap-2">
-                  <select name="phonePrefix" className="bg-[#131313] border border-white/10 rounded-lg py-4 px-3 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none text-gray-400">
-                    <option value="+1">🇺🇸 +1</option>
-                    <option value="+44">🇬🇧 +44</option>
-                    <option value="+91">🇮🇳 +91</option>
-                  </select>
-                  <input required name="phone" className="flex-1 bg-[#131313] border border-white/10 rounded-lg py-4 px-6 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-gray-600 text-white" placeholder="Enter Phone Number" type="tel" />
+            ) : (
+              <form className="space-y-8" onSubmit={handleSubmit}>
+                <div className="bg-surface-container-low p-4 rounded-lg border border-white/5 mb-4 flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center border border-white/10">
+                    <span className="material-symbols-outlined text-gray-400">person</span>
+                  </div>
+                  <div>
+                    <p className="text-white font-bold">{currentUser.name}</p>
+                    <p className="text-gray-400 text-sm">{currentUser.email}</p>
+                  </div>
                 </div>
+
+                <div className="flex flex-col gap-2">
+                  <label className="font-label-md text-white">Phone Number</label>
+                  <div className="flex gap-2">
+                    <select name="phonePrefix" className="bg-[#131313] border border-white/10 rounded-lg py-4 px-3 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none text-gray-400">
+                      <option value="+1">🇺🇸 +1</option>
+                      <option value="+44">🇬🇧 +44</option>
+                      <option value="+91">🇮🇳 +91</option>
+                    </select>
+                    <input required name="phone" className="flex-1 bg-[#131313] border border-white/10 rounded-lg py-4 px-6 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-gray-600 text-white" placeholder="Enter Phone Number" type="tel" />
+                  </div>
+                </div>
+                
+                <div className="flex flex-col gap-2">
+                  <label className="font-label-md text-white">Message</label>
+                  <textarea required name="message" className="bg-[#131313] border border-white/10 rounded-lg py-4 px-6 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-gray-600 resize-none text-white" placeholder="Enter your Message" rows="4"></textarea>
+                </div>
+                
+                <div className="flex items-center justify-between pt-4">
+                  <div className="flex items-center gap-3 text-gray-400 text-sm">
+                    <input required className="rounded bg-[#131313] border-white/10 text-red-600 focus:ring-red-600 cursor-pointer" type="checkbox" />
+                    <span>I agree with Terms of Use and Privacy Policy</span>
+                  </div>
+                  <button className="bg-primary-container text-white px-10 py-4 rounded-lg font-bold hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-red-600/20" type="submit">Send Message</button>
+                </div>
+              </form>
+            )}
+          </div>
+
+          {/* Past Support Messages */}
+          {currentUser && myMessages.length > 0 && (
+            <div className="bg-[#1A1A1A] rounded-xl p-10 border border-white/10 shadow-2xl">
+              <h2 className="text-xl font-bold text-white mb-6">Your Past Requests</h2>
+              <div className="space-y-6">
+                {myMessages.map(msg => (
+                  <div key={msg.id} id={`msg-${msg.id}`} className="bg-surface-container-low rounded-lg border border-white/5 p-6 rounded-2xl scroll-m-32">
+                    <div className="flex justify-between items-start mb-4">
+                      <span className="text-sm text-gray-500">{new Date(msg.createdAt).toLocaleString()}</span>
+                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${msg.status === 'pending' ? 'bg-orange-600/20 text-orange-500' : 'bg-green-600/20 text-green-500'}`}>
+                        {msg.status}
+                      </span>
+                    </div>
+                    <p className="text-gray-300 mb-4 whitespace-pre-wrap">{msg.message}</p>
+                    
+                    {msg.status === 'replied' && (
+                      <div className="bg-surface-container-high p-4 rounded-lg border-l-4 border-l-red-600 mt-4">
+                        <p className="text-xs text-red-500 font-bold mb-2 uppercase tracking-wider">Admin Reply</p>
+                        <p className="text-white whitespace-pre-wrap">{msg.reply}</p>
+                        <p className="text-xs text-gray-500 mt-2">{new Date(msg.repliedAt).toLocaleString()}</p>
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
-            <div className="flex flex-col gap-2">
-              <label className="font-label-md text-white">Message</label>
-              <textarea required name="message" className="bg-[#131313] border border-white/10 rounded-lg py-4 px-6 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-gray-600 resize-none text-white" placeholder="Enter your Message" rows="4"></textarea>
-            </div>
-            <div className="flex items-center justify-between pt-4">
-              <div className="flex items-center gap-3 text-gray-400 text-sm">
-                <input required className="rounded bg-[#131313] border-white/10 text-red-600 focus:ring-red-600 cursor-pointer" type="checkbox" />
-                <span>I agree with Terms of Use and Privacy Policy</span>
-              </div>
-              <button className="bg-primary-container text-white px-10 py-4 rounded-lg font-bold hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-red-600/20" type="submit">Send Message</button>
-            </div>
-          </form>
+          )}
         </div>
       </section>
 
