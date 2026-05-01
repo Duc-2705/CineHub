@@ -63,6 +63,15 @@ export default function Navbar() {
                       {currentUser.subscription.plan.replace(' Plan', '')}
                     </span>
                   )}
+                  {currentUser.role === 'admin' && (
+                    <button 
+                      onClick={() => navigate('/admin')}
+                      className="bg-purple-600/20 text-purple-500 border border-purple-500/30 px-3 py-1 rounded-lg text-xs font-bold hover:bg-purple-600/30 transition-colors flex items-center gap-1"
+                    >
+                      <span className="material-symbols-outlined text-[14px]">admin_panel_settings</span>
+                      Admin
+                    </button>
+                  )}
                 </div>
                 <button 
                   onClick={logout} 

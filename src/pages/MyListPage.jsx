@@ -1,6 +1,9 @@
-import movies from '../data/movies.json'
 import { useMyList } from '../hooks/useMyList'
+import { getMovies } from '../utils/dataStore'
 import MovieCard from '../components/MovieCard'
+import CTABanner from '../components/CTABanner'
+
+const movies = getMovies()
 
 export default function MyListPage() {
   const { list } = useMyList()

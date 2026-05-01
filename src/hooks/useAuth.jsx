@@ -17,11 +17,36 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Persistence: Restore user on load
+  // Persistence: Restore user on load and ensure default admin
   useEffect(() => {
+    // Seed default admin if it doesn't exist
+    let users = JSON.parse(localStorage.getItem('cinehub_users') || '[]');
+    const adminExists = users.some(u => u.email === 'admin@cinehub.com');
+    if (!adminExists) {
+      const defaultAdmin = {
+        id: 'admin_0',
+        name: 'Admin',
+        email: 'admin@cinehub.com',
+        passwordHash: hashPassword('admin123'),
+        role: 'admin',
+        status: 'active',
+        subscription: null
+      };
+      users.push(defaultAdmin);
+      localStorage.setItem('cinehub_users', JSON.stringify(users));
+    }
+
     const storedUser = localStorage.getItem('cinehub_current_user');
     if (storedUser) {
-      setCurrentUser(JSON.parse(storedUser));
+      // Refresh user data from db to get latest status/role
+      const parsedUser = JSON.parse(storedUser);
+      const dbUser = users.find(u => u.email === parsedUser.email);
+      if (dbUser && dbUser.status !== 'locked') {
+        const userData = { id: dbUser.id, name: dbUser.name, email: dbUser.email, subscription: dbUser.subscription, role: dbUser.role, status: dbUser.status };
+        setCurrentUser(userData);
+      } else {
+        localStorage.removeItem('cinehub_current_user');
+      }
     }
     setLoading(false);
   }, []);
@@ -41,7 +66,11 @@ export const AuthProvider = ({ children }) => {
       throw new Error('Invalid email or password');
     }
 
-    const userData = { id: user.id, name: user.name, email: user.email, subscription: user.subscription };
+    if (user.status === 'locked') {
+      throw new Error('Your account has been locked. Please contact support.');
+    }
+
+    const userData = { id: user.id, name: user.name, email: user.email, subscription: user.subscription, role: user.role || 'user', status: user.status || 'active' };
     setCurrentUser(userData);
     localStorage.setItem('cinehub_current_user', JSON.stringify(userData));
     return userData;
@@ -61,13 +90,15 @@ export const AuthProvider = ({ children }) => {
       id: Date.now().toString(),
       name,
       email,
-      passwordHash: hashPassword(password)
+      passwordHash: hashPassword(password),
+      role: 'user',
+      status: 'active'
     };
 
     users.push(newUser);
     localStorage.setItem('cinehub_users', JSON.stringify(users));
 
-    const userData = { id: newUser.id, name: newUser.name, email: newUser.email, subscription: null };
+    const userData = { id: newUser.id, name: newUser.name, email: newUser.email, subscription: null, role: newUser.role, status: newUser.status };
     setCurrentUser(userData);
     localStorage.setItem('cinehub_current_user', JSON.stringify(userData));
     return userData;

@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import movies from '../data/movies.json'
+import { getMovies } from '../utils/dataStore'
 import MovieCard from '../components/MovieCard'
 import GenreCard from '../components/GenreCard'
 import FAQItem from '../components/FAQItem'
 import PricingCard from '../components/PricingCard'
 import CTABanner from '../components/CTABanner'
 
+const movies = getMovies()
 const GENRE_NAMES = ['Action', 'Adventure', 'Comedy', 'Drama', 'Horror']
 const GENRES = GENRE_NAMES.map(name => {
   const matching = movies.filter(m => m.genres && m.genres.includes(name)).map(m => m.posterUrl)

@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
+import { addView } from '../utils/dataStore'
 
-export default function FullMoviePlayer({ isOpen, onClose, movieUrl }) {
+export default function FullMoviePlayer({ isOpen, onClose, movieUrl, movieId }) {
   // All hooks MUST be called before any conditional returns (React Rules of Hooks)
   const isValidSource = movieUrl && (
     movieUrl.includes('youtube.com') ||
@@ -25,6 +26,9 @@ export default function FullMoviePlayer({ isOpen, onClose, movieUrl }) {
     if (isOpen) {
       window.addEventListener('keydown', handleKeyDown)
       document.body.style.overflow = 'hidden'
+      if (movieId) {
+        addView(movieId)
+      }
     }
     return () => {
       window.removeEventListener('keydown', handleKeyDown)

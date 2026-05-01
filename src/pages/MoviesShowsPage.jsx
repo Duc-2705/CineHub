@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
-import movies from '../data/movies.json'
+import { getMovies } from '../utils/dataStore'
 import MovieCard from '../components/MovieCard'
 import GenreCard from '../components/GenreCard'
 import CTABanner from '../components/CTABanner'
 import TrailerModal from '../components/TrailerModal'
 import Slider from '../components/Slider'
+
+const movies = getMovies()
 
 const GENRE_NAMES = ['Action', 'Adventure', 'Comedy', 'Drama', 'Horror']
 const GENRES = GENRE_NAMES.map(name => {

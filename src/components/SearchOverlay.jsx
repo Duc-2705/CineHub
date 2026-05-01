@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import movies from '../data/movies.json'
+import { getMovies } from '../utils/dataStore'
+
+const movies = getMovies()
 
 export default function SearchOverlay({ open, onClose }) {
   const [query, setQuery] = useState('')

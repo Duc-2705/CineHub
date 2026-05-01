@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
-import movies from '../data/movies.json'
+import { getMovies } from '../utils/dataStore'
 import { useMyList } from '../hooks/useMyList'
 import { useAuth } from '../hooks/useAuth'
 import StarRating from '../components/StarRating'
 import CTABanner from '../components/CTABanner'
 import TrailerModal from '../components/TrailerModal'
 import FullMoviePlayer from '../components/FullMoviePlayer'
+
+const movies = getMovies()
 
 export default function MovieDetailPage() {
   const { id } = useParams()
@@ -90,6 +92,7 @@ export default function MovieDetailPage() {
         isOpen={fullMovieOpen}
         onClose={() => setFullMovieOpen(false)}
         movieUrl={movie.fullMovieUrl}
+        movieId={movie.id}
       />
 
       {/* Hero */}

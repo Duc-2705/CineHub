@@ -17,6 +17,7 @@ const FAQS = [
 ]
 
 import { useNavigate } from 'react-router-dom'
+import { addSupportMessage } from '../utils/dataStore'
 
 export default function SupportPage() {
   const navigate = useNavigate()
@@ -24,6 +25,16 @@ export default function SupportPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    
+    const formData = new FormData(e.target)
+    addSupportMessage({
+      firstName: formData.get('firstName'),
+      lastName: formData.get('lastName'),
+      email: formData.get('email'),
+      phone: formData.get('phonePrefix') + ' ' + formData.get('phone'),
+      message: formData.get('message'),
+    })
+
     setToast(true)
     setTimeout(() => setToast(false), 3000)
     e.target.reset()
@@ -61,33 +72,33 @@ export default function SupportPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="flex flex-col gap-2">
                 <label className="font-label-md text-white">First Name</label>
-                <input required className="bg-[#131313] border border-white/10 rounded-lg py-4 px-6 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-gray-600 text-white" placeholder="Enter First Name" type="text" />
+                <input required name="firstName" className="bg-[#131313] border border-white/10 rounded-lg py-4 px-6 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-gray-600 text-white" placeholder="Enter First Name" type="text" />
               </div>
               <div className="flex flex-col gap-2">
                 <label className="font-label-md text-white">Last Name</label>
-                <input required className="bg-[#131313] border border-white/10 rounded-lg py-4 px-6 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-gray-600 text-white" placeholder="Enter Last Name" type="text" />
+                <input required name="lastName" className="bg-[#131313] border border-white/10 rounded-lg py-4 px-6 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-gray-600 text-white" placeholder="Enter Last Name" type="text" />
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="flex flex-col gap-2">
                 <label className="font-label-md text-white">Email</label>
-                <input required className="bg-[#131313] border border-white/10 rounded-lg py-4 px-6 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-gray-600 text-white" placeholder="Enter your Email" type="email" />
+                <input required name="email" className="bg-[#131313] border border-white/10 rounded-lg py-4 px-6 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-gray-600 text-white" placeholder="Enter your Email" type="email" />
               </div>
               <div className="flex flex-col gap-2">
                 <label className="font-label-md text-white">Phone Number</label>
                 <div className="flex gap-2">
-                  <select className="bg-[#131313] border border-white/10 rounded-lg py-4 px-3 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none text-gray-400">
-                    <option>🇺🇸 +1</option>
-                    <option>🇬🇧 +44</option>
-                    <option>🇮🇳 +91</option>
+                  <select name="phonePrefix" className="bg-[#131313] border border-white/10 rounded-lg py-4 px-3 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none text-gray-400">
+                    <option value="+1">🇺🇸 +1</option>
+                    <option value="+44">🇬🇧 +44</option>
+                    <option value="+91">🇮🇳 +91</option>
                   </select>
-                  <input required className="flex-1 bg-[#131313] border border-white/10 rounded-lg py-4 px-6 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-gray-600 text-white" placeholder="Enter Phone Number" type="tel" />
+                  <input required name="phone" className="flex-1 bg-[#131313] border border-white/10 rounded-lg py-4 px-6 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-gray-600 text-white" placeholder="Enter Phone Number" type="tel" />
                 </div>
               </div>
             </div>
             <div className="flex flex-col gap-2">
               <label className="font-label-md text-white">Message</label>
-              <textarea required className="bg-[#131313] border border-white/10 rounded-lg py-4 px-6 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-gray-600 resize-none text-white" placeholder="Enter your Message" rows="4"></textarea>
+              <textarea required name="message" className="bg-[#131313] border border-white/10 rounded-lg py-4 px-6 focus:ring-1 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-gray-600 resize-none text-white" placeholder="Enter your Message" rows="4"></textarea>
             </div>
             <div className="flex items-center justify-between pt-4">
               <div className="flex items-center gap-3 text-gray-400 text-sm">

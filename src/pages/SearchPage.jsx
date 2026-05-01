@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import movies from '../data/movies.json'
+import { getMovies } from '../utils/dataStore'
 
 export default function SearchPage() {
   const [query, setQuery] = useState('')
   const navigate = useNavigate()
+  const movies = getMovies()
   const results = query.trim().length > 1
     ? movies.filter((m) => m.title.toLowerCase().includes(query.toLowerCase()) || m.genres.some((g) => g.toLowerCase().includes(query.toLowerCase())))
     : []
