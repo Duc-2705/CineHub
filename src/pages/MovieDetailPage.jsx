@@ -100,7 +100,16 @@ export default function MovieDetailPage() {
             <h1 className="font-headline-xl text-white mb-4 tracking-tight">{movie.title}</h1>
             <p className="max-w-2xl text-gray-300 font-body-md mb-8">{movie.description}</p>
             <div className="flex gap-4">
-              <button onClick={() => setFullMovieOpen(true)} className="bg-primary-container text-white px-6 py-3 rounded-lg font-label-md flex items-center gap-2 hover:scale-105 transition-transform">
+              <button 
+                onClick={() => {
+                  if (currentUser?.subscription?.status === 'active') {
+                    setFullMovieOpen(true)
+                  } else {
+                    navigate('/subscriptions')
+                  }
+                }} 
+                className="bg-primary-container text-white px-6 py-3 rounded-lg font-label-md flex items-center gap-2 hover:scale-105 transition-transform"
+              >
                 <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>play_circle</span>
                 Watch Full Movie (Demo)
               </button>

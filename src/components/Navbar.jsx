@@ -56,7 +56,14 @@ export default function Navbar() {
 
             {currentUser ? (
               <div className="flex items-center gap-4">
-                <span className="text-sm font-bold text-white hidden md:block">Hi, {currentUser.name}</span>
+                <div className="flex items-center gap-2 hidden md:flex">
+                  <span className="text-sm font-bold text-white">Hi, {currentUser.name}</span>
+                  {currentUser.subscription?.status === 'active' && (
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider bg-gradient-to-r from-amber-500 to-yellow-600 text-black shadow-lg shadow-yellow-500/20 border border-yellow-400/50">
+                      {currentUser.subscription.plan.replace(' Plan', '')}
+                    </span>
+                  )}
+                </div>
                 <button 
                   onClick={logout} 
                   className="bg-surface-container hover:bg-surface-container-high border border-white/10 px-4 py-2 rounded-lg text-sm text-gray-300 hover:text-white transition-colors flex items-center gap-2"

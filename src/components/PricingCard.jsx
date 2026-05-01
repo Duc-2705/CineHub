@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-export default function PricingCard({ plan, isYearly }) {
-  const navigate = useNavigate()
+export default function PricingCard({ plan, isYearly, currentPlan, onChoosePlan, onStartTrial }) {
   const price = isYearly
     ? (plan.monthlyPrice * 0.8).toFixed(2)
     : plan.monthlyPrice.toFixed(2)
@@ -15,18 +14,29 @@ export default function PricingCard({ plan, isYearly }) {
         <span className="text-gray-500">/{isYearly ? 'mo, billed yearly' : 'month'}</span>
       </div>
       <div className="flex flex-col gap-4 mb-12 mt-auto">
-        <button 
-          onClick={() => { window.scrollTo(0, 0); navigate('/subscriptions'); }}
-          className="w-full py-4 rounded-lg border border-white/10 font-bold text-white hover:bg-white/5 transition-colors"
-        >
-          Start Free Trial
-        </button>
-        <button 
-          onClick={() => { window.scrollTo(0, 0); navigate('/subscriptions'); }}
-          className="w-full py-4 rounded-lg bg-primary-container font-bold text-white hover:bg-red-700 transition-colors"
-        >
-          Choose Plan
-        </button>
+        {currentPlan === plan.name ? (
+          <button 
+            disabled
+            className="w-full py-4 rounded-lg bg-surface-container border border-white/10 font-bold text-gray-500 cursor-not-allowed"
+          >
+            Current Plan
+          </button>
+        ) : (
+          <>
+            <button 
+              onClick={() => onStartTrial(plan)}
+              className="w-full py-4 rounded-lg border border-white/10 font-bold text-white hover:bg-white/5 transition-colors"
+            >
+              Start Free Trial
+            </button>
+            <button 
+              onClick={() => onChoosePlan(plan)}
+              className="w-full py-4 rounded-lg bg-primary-container font-bold text-white hover:bg-red-700 transition-colors"
+            >
+              {currentPlan && currentPlan !== 'Free Trial' ? 'Switch Plan' : 'Choose Plan'}
+            </button>
+          </>
+        )}
       </div>
     </div>
   )

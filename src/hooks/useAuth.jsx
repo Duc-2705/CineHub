@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
       throw new Error('Invalid email or password');
     }
 
-    const userData = { id: user.id, name: user.name, email: user.email };
+    const userData = { id: user.id, name: user.name, email: user.email, subscription: user.subscription };
     setCurrentUser(userData);
     localStorage.setItem('cinehub_current_user', JSON.stringify(userData));
     return userData;
@@ -67,10 +67,29 @@ export const AuthProvider = ({ children }) => {
     users.push(newUser);
     localStorage.setItem('cinehub_users', JSON.stringify(users));
 
-    const userData = { id: newUser.id, name: newUser.name, email: newUser.email };
+    const userData = { id: newUser.id, name: newUser.name, email: newUser.email, subscription: null };
     setCurrentUser(userData);
     localStorage.setItem('cinehub_current_user', JSON.stringify(userData));
     return userData;
+  };
+
+  const updateSubscription = async (subscriptionData) => {
+    if (!currentUser) return;
+    
+    // Simulate network delay
+    await new Promise((resolve) => setTimeout(resolve, 800));
+
+    const updatedUser = { ...currentUser, subscription: subscriptionData };
+    setCurrentUser(updatedUser);
+    localStorage.setItem('cinehub_current_user', JSON.stringify(updatedUser));
+
+    // Also update in users array
+    const users = JSON.parse(localStorage.getItem('cinehub_users') || '[]');
+    const userIndex = users.findIndex((u) => u.email === updatedUser.email);
+    if (userIndex !== -1) {
+      users[userIndex].subscription = subscriptionData;
+      localStorage.setItem('cinehub_users', JSON.stringify(users));
+    }
   };
 
   const logout = () => {
@@ -79,7 +98,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ currentUser, login, register, logout, loading }}>
+    <AuthContext.Provider value={{ currentUser, login, register, logout, loading, updateSubscription }}>
       {children}
     </AuthContext.Provider>
   );

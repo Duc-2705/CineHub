@@ -1,5 +1,9 @@
 import { useState } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import PricingCard from '../components/PricingCard'
+import PaymentModal from '../components/PaymentModal'
+import SuccessModal from '../components/SuccessModal'
+import { useAuth } from '../hooks/useAuth'
 
 const PLANS = [
   { name: 'Basic Plan', monthlyPrice: 9.99, description: 'Enjoy an extensive library of movies and shows, featuring a range of content, including recently released titles.', featured: false },
@@ -9,9 +13,71 @@ const PLANS = [
 
 export default function SubscriptionsPage() {
   const [isYearly, setIsYearly] = useState(false)
+  const [paymentModalOpen, setPaymentModalOpen] = useState(false)
+  const [successModalOpen, setSuccessModalOpen] = useState(false)
+  const [successMessage, setSuccessMessage] = useState('')
+  const [selectedPlan, setSelectedPlan] = useState(null)
+  
+  const { currentUser, updateSubscription } = useAuth()
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const currentPlan = currentUser?.subscription?.plan
+
+  const handleChoosePlan = (plan) => {
+    if (!currentUser) {
+      navigate('/login', { state: { from: location } })
+      return
+    }
+
+    if (currentPlan && currentPlan !== 'Free Trial' && currentPlan !== plan.name) {
+      if (!window.confirm(`Are you sure you want to switch from ${currentPlan} to ${plan.name}?`)) {
+        return
+      }
+    }
+
+    setSelectedPlan(plan)
+    setPaymentModalOpen(true)
+  }
+
+  const handleStartTrial = async (plan) => {
+    if (!currentUser) {
+      navigate('/login', { state: { from: location } })
+      return
+    }
+
+    if (currentPlan) {
+      alert(`You already have an active subscription (${currentPlan}).`)
+      return
+    }
+
+    await updateSubscription({ plan: 'Free Trial', status: 'active' })
+    setSelectedPlan(plan)
+    setSuccessMessage('Free Trial Activated 🎉')
+    setSuccessModalOpen(true)
+  }
+
+  const handlePaymentSubmit = async () => {
+    await updateSubscription({ plan: selectedPlan.name, status: 'active' })
+    setPaymentModalOpen(false)
+    setSuccessMessage('Payment Successful 🎉')
+    setSuccessModalOpen(true)
+  }
 
   return (
-    <div className="bg-background font-body-md text-on-surface antialiased pt-32 pb-24">
+    <div className="bg-background font-body-md text-on-surface antialiased pt-32 pb-24 relative">
+      <PaymentModal 
+        isOpen={paymentModalOpen} 
+        onClose={() => setPaymentModalOpen(false)} 
+        plan={selectedPlan}
+        onSubmit={handlePaymentSubmit}
+      />
+      <SuccessModal 
+        isOpen={successModalOpen}
+        onClose={() => setSuccessModalOpen(false)}
+        message={successMessage}
+        planName={selectedPlan?.name || 'Free Trial'}
+      />
       {/* Hero Section */}
       <section className="max-w-[1440px] mx-auto px-10 md:px-20 mb-section-gap">
         <div className="flex flex-col gap-4 max-w-4xl">
@@ -39,7 +105,16 @@ export default function SubscriptionsPage() {
 
         {/* Pricing Cards */}
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-gutter">
-          {PLANS.map((p) => <PricingCard key={p.name} plan={p} isYearly={isYearly} />)}
+          {PLANS.map((p) => (
+            <PricingCard 
+              key={p.name} 
+              plan={p} 
+              isYearly={isYearly} 
+              currentPlan={currentPlan}
+              onChoosePlan={handleChoosePlan}
+              onStartTrial={handleStartTrial}
+            />
+          ))}
         </div>
       </section>
 
@@ -123,7 +198,12 @@ export default function SubscriptionsPage() {
               <h2 className="font-headline-xl text-white mb-4">Start your free trial today!</h2>
               <p className="font-body-lg text-gray-400">This is a clear and concise call to action that encourages users to sign up for a free trial of CineHub.</p>
             </div>
-            <button onClick={() => window.scrollTo(0, 0)} className="bg-primary-container text-white px-10 py-5 rounded-lg font-label-md hover:bg-red-700 transition-all duration-300 hover:scale-105 shadow-xl uppercase tracking-widest whitespace-nowrap">Start Free Trial</button>
+            <button 
+              onClick={() => handleStartTrial({ name: 'Free Trial' })} 
+              className="bg-primary-container text-white px-10 py-5 rounded-lg font-label-md hover:bg-red-700 transition-all duration-300 hover:scale-105 shadow-xl uppercase tracking-widest whitespace-nowrap"
+            >
+              Start Free Trial
+            </button>
           </div>
         </div>
       </section>
