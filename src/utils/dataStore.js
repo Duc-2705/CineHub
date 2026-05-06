@@ -12,6 +12,9 @@ export const getMovies = () => {
 
 export const saveMovies = (movies) => {
   localStorage.setItem('cinehub_movies', JSON.stringify(movies));
+
+  // Notify same-tab listeners (storage event doesn't fire in same document)
+  window.dispatchEvent(new Event('cinehub_movies_updated'));
 };
 
 export const getUsers = () => {

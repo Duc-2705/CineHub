@@ -6,28 +6,8 @@ import GenreCard from '../components/GenreCard'
 import CTABanner from '../components/CTABanner'
 import TrailerModal from '../components/TrailerModal'
 import Slider from '../components/Slider'
-
-const movies = getMovies()
-
 const GENRE_NAMES = ['Action', 'Adventure', 'Comedy', 'Drama', 'Horror']
-const GENRES = GENRE_NAMES.map(name => {
-  const matching = movies.filter(m => m.genres && m.genres.includes(name)).map(m => m.posterUrl)
-  let images = [...matching]
-  if (images.length > 0) {
-    while (images.length < 4) images = [...images, ...images]
-  } else {
-    images = ['','','','']
-  }
-  return { name, images: images.slice(0, 4) }
-})
-
 const GENRE_TABS = ['All', 'Action', 'Adventure', 'Comedy', 'Drama', 'Horror']
-
-const featured = movies.find((m) => m.isTrending) || movies[0]
-const top10 = movies.filter((m) => m.topRank).sort((a, b) => a.topRank - b.topRank)
-const trending = movies.filter((m) => m.isTrending)
-const newReleases = movies.filter((m) => m.isNew)
-const mustWatch = movies.filter(m => m.rating >= 7.5)
 
 export default function MoviesShowsPage() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -35,6 +15,19 @@ export default function MoviesShowsPage() {
   const activeGenre = searchParams.get('genre') || 'All'
   const [trailerOpen, setTrailerOpen] = useState(false)
   const top10Ref = useRef(null)
+  const [movies, setMovies] = useState([])
+
+  useEffect(() => {
+    const load = (source) => {
+      const next = getMovies()
+      setMovies(next)
+    }
+
+    load('mount')
+    const onUpdated = () => load('cinehub_movies_updated')
+    window.addEventListener('cinehub_movies_updated', onUpdated)
+    return () => window.removeEventListener('cinehub_movies_updated', onUpdated)
+  }, [])
 
   useEffect(() => {
     const genre = searchParams.get('genre')
@@ -44,6 +37,23 @@ export default function MoviesShowsPage() {
       }, 100)
     }
   }, [searchParams])
+
+  const GENRES = GENRE_NAMES.map(name => {
+    const matching = movies.filter(m => m.genres && m.genres.includes(name)).map(m => m.posterUrl)
+    let images = [...matching]
+    if (images.length > 0) {
+      while (images.length < 4) images = [...images, ...images]
+    } else {
+      images = ['','','','']
+    }
+    return { name, images: images.slice(0, 4) }
+  })
+
+  const featured = movies.find((m) => m.isTrending) || movies[0] || {}
+  const top10 = movies.filter((m) => m.topRank).sort((a, b) => a.topRank - b.topRank)
+  const trending = movies.filter((m) => m.isTrending)
+  const newReleases = movies.filter((m) => m.isNew)
+  const mustWatch = movies.filter(m => m.rating >= 7.5)
 
   const filtered = activeGenre === 'All'
     ? movies
@@ -76,7 +86,7 @@ export default function MoviesShowsPage() {
               <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
               Play Now
             </button>
-            <button onClick={() => navigate(`/movie/${featured.id}`)} className="p-4 bg-surface-container rounded-lg border border-white/10 hover:bg-surface-container-high transition-colors">
+            <button onClick={() => featured.id && navigate(`/movie/${featured.id}`)} className="p-4 bg-surface-container rounded-lg border border-white/10 hover:bg-surface-container-high transition-colors">
               <span className="material-symbols-outlined">info</span>
             </button>
           </div>

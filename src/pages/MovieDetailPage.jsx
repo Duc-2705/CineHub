@@ -8,8 +8,6 @@ import CTABanner from '../components/CTABanner'
 import TrailerModal from '../components/TrailerModal'
 import FullMoviePlayer from '../components/FullMoviePlayer'
 
-const movies = getMovies()
-
 export default function MovieDetailPage() {
   const { id } = useParams()
   const navigate = useNavigate()
@@ -18,6 +16,7 @@ export default function MovieDetailPage() {
   const { currentUser } = useAuth()
   const [trailerOpen, setTrailerOpen] = useState(false)
   const [fullMovieOpen, setFullMovieOpen] = useState(false)
+  const [movies, setMovies] = useState([])
 
   const [userRating, setUserRating] = useState(0)
   const [userReviews, setUserReviews] = useState([])
@@ -35,6 +34,17 @@ export default function MovieDetailPage() {
       const storedReviews = localStorage.getItem(`cinehub_reviews_${id}`)
       if (storedReviews) setUserReviews(JSON.parse(storedReviews))
     }
+  }, [id])
+
+  useEffect(() => {
+    const load = (source) => {
+      const next = getMovies()
+      setMovies(next)
+    }
+    load('mount')
+    const onUpdated = () => load('cinehub_movies_updated')
+    window.addEventListener('cinehub_movies_updated', onUpdated)
+    return () => window.removeEventListener('cinehub_movies_updated', onUpdated)
   }, [id])
 
   const handleRatingChange = (newRating) => {
@@ -66,7 +76,7 @@ export default function MovieDetailPage() {
     alert('Review added successfully!')
   }
 
-  const movie = movies.find((m) => m.id === id)
+  const movie = movies.find((m) => String(m.id) === String(id))
 
   if (!movie) return (
     <div className="pt-32 min-h-screen flex flex-col items-center justify-center text-white gap-4">
@@ -105,7 +115,7 @@ export default function MovieDetailPage() {
             <div className="flex gap-4">
               <button 
                 onClick={() => {
-                  if (currentUser?.subscription?.status === 'active') {
+                  if (currentUser?.subscription?.status === 'active' || currentUser?.role === 'admin') {
                     setFullMovieOpen(true)
                   } else {
                     navigate('/subscriptions')

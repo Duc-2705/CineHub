@@ -34,7 +34,7 @@ export default function FullMoviePlayer({ isOpen, onClose, movieUrl, movieId }) 
       window.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = 'unset'
     }
-  }, [isOpen, onClose])
+  }, [isOpen, onClose, movieId])
 
   // Conditional return ONLY after all hooks
   if (!isOpen) return null
